@@ -21,9 +21,23 @@ import TextPrimary from '../../Component/TextPrimary';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
 
-export default class Login extends Component {
-  OnLogin = async (values) => {
+export default class ForgotPassword extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      otpsent: false,
+      editable: true,
+      loading: false,
+    };
+  }
+  OnLogin = async values => {
     console.log(values);
+    this.setState({
+      editable: false,
+      otpsent: true,
+      loading: false,
+    });
   };
 
   inputs = {};
@@ -81,18 +95,18 @@ export default class Login extends Component {
             <Formik
               enableReinitialize={true}
               initialValues={{
-                username: '',
-                password: '',
+                phone: '',
               }}
               onSubmit={values => this.OnLogin(values)}
               validationSchema={yup.object().shape({
-                username: yup
+                phone: yup
                   .string()
-                  .min(6)
-                  .required(),
-                password: yup
-                  .string()
-                  .min(6)
+                  .min(10, 'Use Valid Indian Mobile Number without 0 or +91')
+                  .max(10, 'Use Valid Indian Mobile Number without 0 or +91')
+                  .matches(
+                    /^(\+91|\+91\-|0)?[6789]\d{9}$/,
+                    'Phone number is not valid',
+                  )
                   .required(),
               })}>
               {({
@@ -110,82 +124,76 @@ export default class Login extends Component {
                   behavior="padding">
                   <View>
                     <InputCustom
-                      InputonSubmitEditing={() => {
-                        this.focusTheField('password');
+                      InputRef={input => {
+                        this.inputs.phone = input;
                       }}
-                      value={values.username}
+                      value={values.phone}
                       blurOnSubmit={false}
                       returnKeyType={'next'}
-                      leftIcon={'user'}
-                      placeholder="username"
-                      onChangeText={handleChange('username')}
-                      onBlur={() => setFieldTouched('username')}
+                      leftIcon={'cellphone-android'}
+                      placeholder="Phone"
+                      onChangeText={handleChange('phone')}
+                      onBlur={() => setFieldTouched('phone')}
                       autoCorrect={false}
-                      keyboardType={'email-address'}
-                      textContentType={'username'}
+                      keyboardType={'phone-pad'}
+                      textContentType={'phone'}
+                      editable={this.state.editable}
                       status={
-                        touched.username && errors.username
-                          ? 'danger'
-                          : 'primary'
+                        touched.phone && errors.phone ? 'danger' : 'primary'
                       }
                       shake={true}
                       errorMessage={
-                        touched.username && errors.username
-                          ? errors.username
-                          : ''
+                        touched.phone && errors.phone ? errors.phone : ''
                       }
                     />
                   </View>
-                  <View>
-                    <InputCustom
-                      InputRef={input => {
-                        this.inputs.password = input;
-                      }}
-                      textContentType={'password'}
-                      autoCompleteType={'password'}
-                      keyboardType={'default'}
-                      onChangeText={handleChange('password')}
-                      onBlur={() => setFieldTouched('password')}
-                      placeholder={'Password'}
-                      leftIcon={'code'}
-                      returnKeyType={'go'}
-                      autoCorrect={false}
-                      value={values.password}
-                      blurOnSubmit={false}
-                      secureTextEntry={true}
-                      status={
-                        touched.password && errors.password
-                          ? 'danger'
-                          : 'primary'
-                      }
-                      shake={true}
-                      errorMessage={
-                        touched.password && errors.password
-                          ? errors.password
-                          : ''
-                      }
-                      // autoCompleteType={'tel'}
-                    />
-                  </View>
+                  {this.state.otpsent === true ? (
+                    <View>
+                      <InputCustom
+                        InputRef={input => {
+                          this.inputs.otp = input;
+                        }}
+                        value={values.otp}
+                        blurOnSubmit={false}
+                        returnKeyType={'next'}
+                        leftIcon={'cellphone-android'}
+                        placeholder="otp"
+                        onChangeText={handleChange('phone')}
+                        onBlur={() => setFieldTouched('otp')}
+                        autoCorrect={false}
+                        secureTextEntry={true}
+                        keyboardType={'onepassword'}
+                        textContentType={'phone'}
+                        editable={this.state.editable}
+                        status={
+                          touched.otp && errors.otp ? 'danger' : 'primary'
+                        }
+                        shake={true}
+                        errorMessage={
+                          touched.otp && errors.otp ? errors.otp : ''
+                        }
+                      />
+                    </View>
+                  ) : null}
 
                   <View>
-                    <ButtonCustom
-                      title={'Login'}
-                      loading={false}
-                      onPre={handleSubmit}
-                    />
+                    {this.state.otpsent === true ? (
+                      <ButtonCustom
+                        title={'Validate OTP'}
+                        loading={this.state.loading}
+                        onPre={handleSubmit}
+                      />
+                    ) : (
+                      <ButtonCustom
+                        title={'Send OTP'}
+                        loading={this.state.loading}
+                        onPre={handleSubmit}
+                      />
+                    )}
                   </View>
                 </KeyboardAvoidingView>
               )}
             </Formik>
-
-            <View
-              style={{
-                flex: 1,
-              }}>
-              <TextPrimary value={'Dont have an account ?'} />
-              <ButtonOutline title={'Register'} />
-            </View>
           </View>
         </View>
       </ImageBackground>

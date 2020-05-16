@@ -11,7 +11,7 @@ const AvatarTeacher = props => (
       padding: 10,
     }}>
     <LinearGradient
-        colors={['#CA1D7E', '#E35157', '#F2703F']}
+        colors={[BLUESLIGHT, BLUEDARK]}
         start={{x: 0.0, y: 1.0}} end={{x: 1.0, y: 1.0}}
       style={{
         height: 75,

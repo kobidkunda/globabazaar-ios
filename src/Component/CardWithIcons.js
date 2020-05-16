@@ -13,27 +13,36 @@ import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {TEXTLLG, TEXTNL} from '../Style/TextStyle';
 
 const CardWithIcons = props => (
-  <TouchableOpacity
+  <LinearGradient
+    colors={[BLUEDARK, BLUESLIGHT]}
+    start={{x: 0.0, y: 0.8}}
+    end={{x: 1.0, y: 1.0}}
     style={{
-      justifyContent: 'center',
-      alignItems: 'center',
       padding: 10,
       height: 70,
-      backgroundColor: props.bgcolor,
+      //  backgroundColor: props.bgcolor,
       borderRadius: 5,
       elevation: 10,
     }}>
-    <Icon
+    <TouchableOpacity
+      onPress={props.onPress}
       style={{
-        elevation: 20,
-      }}
-      name={props.iconname}
-      size={30}
-      color={WHITE}
-    />
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 50,
+      }}>
+      <Icon
+        style={{
+          elevation: 20,
+        }}
+        name={props.iconname}
+        size={30}
+        color={WHITE}
+      />
 
-    <TEXTNL>{props.text}</TEXTNL>
-  </TouchableOpacity>
+      <TEXTNL>{props.text}</TEXTNL>
+    </TouchableOpacity>
+  </LinearGradient>
 );
 
 const styles = StyleSheet.create({});

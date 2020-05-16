@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  KeyboardAvoidingView,
+    Text,
+    View,
+    Dimensions,
+    StyleSheet,
+    ImageBackground,
+    Image,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    KeyboardAvoidingView, StatusBar,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -17,13 +17,17 @@ import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
 import ButtonOutline from '../../Component/ButtonOutline';
 import TextPrimary from '../../Component/TextPrimary';
+import {inject, observer} from 'mobx-react';
+import ButtonText from '../../Component/ButtonText';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
-
+@inject('Auth')
+@observer
 export default class Login extends Component {
   OnLogin = async (values) => {
-    console.log(values);
+      console.log(values);
+      this.props.Auth.logged = true;
   };
 
   inputs = {};
@@ -46,6 +50,11 @@ export default class Login extends Component {
           style={{
             flex: 1,
           }}>
+            <StatusBar
+                hidden={false}
+                translucent={true}
+                backgroundColor={'rgba(255,255,255,0.0)'}
+            />
           <View
             size={50}
             style={{
@@ -116,8 +125,8 @@ export default class Login extends Component {
                       value={values.username}
                       blurOnSubmit={false}
                       returnKeyType={'next'}
-                      leftIcon={'user'}
-                      placeholder="username"
+                      leftIcon={'account-arrow-right'}
+                      placeholder="Username"
                       onChangeText={handleChange('username')}
                       onBlur={() => setFieldTouched('username')}
                       autoCorrect={false}
@@ -147,7 +156,7 @@ export default class Login extends Component {
                       onChangeText={handleChange('password')}
                       onBlur={() => setFieldTouched('password')}
                       placeholder={'Password'}
-                      leftIcon={'code'}
+                      leftIcon={'onepassword'}
                       returnKeyType={'go'}
                       autoCorrect={false}
                       value={values.password}
@@ -174,6 +183,8 @@ export default class Login extends Component {
                       loading={false}
                       onPre={handleSubmit}
                     />
+
+
                   </View>
                 </KeyboardAvoidingView>
               )}
@@ -184,7 +195,8 @@ export default class Login extends Component {
                 flex: 1,
               }}>
               <TextPrimary value={'Dont have an account ?'} />
-              <ButtonOutline title={'Register'} />
+              <ButtonOutline onPress={() => this.props.navigation.navigate('Register')} title={'Register'} />
+                <ButtonText onPress={() => this.props.navigation.navigate('ForgotPassword')} title={'Forgot Password'}/>
             </View>
           </View>
         </View>

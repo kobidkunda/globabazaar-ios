@@ -1021,10 +1021,20 @@
     eslint-plugin-react-native "3.6.0"
     prettier "1.16.4"
 
-"@react-navigation/core@^5.5.2":
-  version "5.5.2"
-  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.5.2.tgz#14e844287225fe7a41b471262f282ecd2d0404ea"
-  integrity sha512-nYPDpwPVZ3+S8YSj5ktMKgxQq9B298An4nfDhIobLNqMifvTXC15kWTPbMAWSYdwZr5tbw7SniP6+jXFZgfIlQ==
+"@react-native-community/masked-view@^0.1.10":
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/@react-native-community/masked-view/-/masked-view-0.1.10.tgz#5dda643e19e587793bc2034dd9bf7398ad43d401"
+  integrity sha512-rk4sWFsmtOw8oyx8SD3KSvawwaK7gRBSEIy2TAwURyGt+3TizssXP1r8nx3zY+R7v2vYYHXZ+k2/GULAT/bcaQ==
+
+"@react-native-community/netinfo@^5.8.1":
+  version "5.8.1"
+  resolved "https://registry.yarnpkg.com/@react-native-community/netinfo/-/netinfo-5.8.1.tgz#deeb447aa21bf040ce07f307f131e47dee7a5017"
+  integrity sha512-tG6JsEvpdgQuI6C8j/JbTrd6RYTLNl0aYhOqfaHqoIJ3mVkc/ExCLjHsZMqtjyZ/6WrPrKDCaBZkctYugwT2Ag==
+
+"@react-navigation/core@^5.6.1":
+  version "5.6.1"
+  resolved "https://registry.yarnpkg.com/@react-navigation/core/-/core-5.6.1.tgz#c2951e56ef195027bfb4127d049aea5bd381fab1"
+  integrity sha512-cnz3WMJd4Ou6TGLYmEfUijs0Wk+O0Vnlye29B2W2SJfTfqU1w4J8Kl0lzVkg8CZQruicQRzLU8ONVeDN4lj9tA==
   dependencies:
     "@react-navigation/routers" "^5.4.4"
     escape-string-regexp "^4.0.0"
@@ -1033,12 +1043,12 @@
     react-is "^16.13.0"
     use-subscription "^1.4.0"
 
-"@react-navigation/native@^5.3.0":
-  version "5.3.0"
-  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.3.0.tgz#e55ebe18c125a6e6f0bc5de185a3cf688674e65d"
-  integrity sha512-mh6TT4F4TkiwNOI1dIhGD/6iZIjFClqhABZKfYQY4h1Zz8I0cS3Yw9FNhI27k4q0kYuEqQQvXKa2Q84WIK+mIQ==
+"@react-navigation/native@^5.3.2":
+  version "5.3.2"
+  resolved "https://registry.yarnpkg.com/@react-navigation/native/-/native-5.3.2.tgz#31786ae160ab61ac609b2611306b728681016ada"
+  integrity sha512-F9UzCHNjBQSQLv2RNc4q+Uo/3hRx00CIrP6CPBcrDxLe318frN/LHWqh7Dd6rRm7OAvDFYKsniEluLqTPK3Y0w==
   dependencies:
-    "@react-navigation/core" "^5.5.2"
+    "@react-navigation/core" "^5.6.1"
 
 "@react-navigation/routers@^5.4.4":
   version "5.4.4"
@@ -1047,10 +1057,10 @@
   dependencies:
     nanoid "^3.1.5"
 
-"@react-navigation/stack@^5.3.2":
-  version "5.3.2"
-  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.3.2.tgz#a685fde854ccc2ca98dcbca231383c0c08360133"
-  integrity sha512-ceo88QOygNSewl88Gx5GXRXVdH1QuOt37dKO99pWbowQJlluhDrMfRYFd1yI/aTtkjiBvwK+apeIawQ/JiP4Hw==
+"@react-navigation/stack@^5.3.5":
+  version "5.3.5"
+  resolved "https://registry.yarnpkg.com/@react-navigation/stack/-/stack-5.3.5.tgz#ab9a4dff8a6ec2828bde02a5ee5e73ec80dd1a98"
+  integrity sha512-b+yxDmx0t09keJ1CaYUe8Xvo+7mJ4MATc9ns/3tbqDpdiFY+mxBq2Y20WvnMroUyJQo2CIQwVUrfNSArImXPIA==
   dependencies:
     color "^3.1.2"
     react-native-iphone-x-helper "^1.2.1"
@@ -4673,9 +4683,9 @@ nan@^2.12.1:
   integrity sha512-isWHgVjnFjh2x2yuJ/tj3JbwoHu3UC2dX5G/88Cm24yB6YopVgxvBObDY7n5xW6ExmFhJpSEQqFPvq9zaXc8Jw==
 
 nanoid@^3.1.5:
-  version "3.1.6"
-  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.6.tgz#f591cc886c14e5b2c4da753db0ac547fac1fee6a"
-  integrity sha512-Kp/sUTkDjStVFvT4W0OO1Z1jJWhnxIa1TNJ1F+G27IPC+FOc3aqbX8OMptcZE4vRrzREjttOHut5PbC11F7KBQ==
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.1.7.tgz#3705ccf590b6a51fbd1794fcf204ce7b5dc46c01"
+  integrity sha512-ruOwuatdEf4BxQmZopZqhIMudQ9V83aKocr+q2Y7KasnDNvo2OgbgZBYago5hSD0tCmoSl4flIw9ytDLIVM2IQ==
 
 nanomatch@^1.2.9:
   version "1.2.13"
@@ -5294,6 +5304,11 @@ react-native-animatable@1.3.3, react-native-animatable@^1.3.3:
   dependencies:
     prop-types "^15.7.2"
 
+react-native-calendar-events@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-calendar-events/-/react-native-calendar-events-1.7.3.tgz#1c9f9989bfec5ae7c3a3c72572f0d68d43de0d41"
+  integrity sha512-IbtfPDpD6PLx6XQQK0X5f9gIt12iyItoSlMbPgfalz646KUqppU2L0xo4v7kZFy1D2tVDX0gpuPlwJMT2dTeNg==
+
 react-native-easy-grid@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/react-native-easy-grid/-/react-native-easy-grid-0.2.2.tgz#f0be33620be1ebe2d2295918eb58b0a27e8272ab"
@@ -5369,6 +5384,13 @@ react-native-ratings@^6.5.0:
     lodash "^4.17.4"
     prop-types "^15.5.10"
 
+react-native-reanimated@^1.8.0:
+  version "1.8.0"
+  resolved "https://registry.yarnpkg.com/react-native-reanimated/-/react-native-reanimated-1.8.0.tgz#0b5719b20c1fed9aaf8afd9a12e21c9bd46ee428"
+  integrity sha512-vGTt94lE5fsZmfMwERWFIsCr5LHsyllOESeNvlKryLgAg7h4cnJ5XSmVSy4L3qogdgFYCL6HEgY+s7tQmKXiiQ==
+  dependencies:
+    fbjs "^1.0.0"
+
 react-native-root-siblings@3.1.7:
   version "3.1.7"
   resolved "https://registry.yarnpkg.com/react-native-root-siblings/-/react-native-root-siblings-3.1.7.tgz#9af7cf7495311db9fbe929201a3234ed114cfe77"
@@ -5377,12 +5399,22 @@ react-native-root-siblings@3.1.7:
     prop-types "^15.6.2"
     static-container "^1.0.0"
 
+react-native-safe-area-context@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-safe-area-context/-/react-native-safe-area-context-1.0.0.tgz#8b4d79b06d6a9ed5ff3b2c3f0ba25d85538a3149"
+  integrity sha512-8Poo0FHSS/KE0fP6JUH9Mnjg2KQ5MfZAJN3G8/gW2HoFSypWSfFmDp5msETU0Ix3OnRsmBZTJpmgHFEl9OfNAg==
+
 react-native-safe-modules@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-safe-modules/-/react-native-safe-modules-1.0.0.tgz#10a918adf97da920adb1e33e0c852b1e80123b65"
   integrity sha512-ShT8duWBT30W4OFcltZl+UvpPDikZFURvLDQqAsrvbyy6HzWPGJDCpdqM+6GqzPPs4DPEW31YfMNmdJcZ6zI2w==
   dependencies:
     dedent "^0.6.0"
+
+react-native-screens@^2.7.0:
+  version "2.7.0"
+  resolved "https://registry.yarnpkg.com/react-native-screens/-/react-native-screens-2.7.0.tgz#2d3cf3c39a665e9ca1c774264fccdb90e7944047"
+  integrity sha512-n/23IBOkrTKCfuUd6tFeRkn3lB2QZ3cmvoubRscR0JU/Zl4/ZyKmwnFmUv1/Fr+2GH/H8UTX59kEKDYYg3dMgA==
 
 react-native-snap-carousel@^3.9.0:
   version "3.9.0"
@@ -5391,6 +5423,11 @@ react-native-snap-carousel@^3.9.0:
   dependencies:
     prop-types "^15.6.1"
     react-addons-shallow-compare "15.6.2"
+
+react-native-splash-screen@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-native-splash-screen/-/react-native-splash-screen-3.2.0.tgz#d47ec8557b1ba988ee3ea98d01463081b60fff45"
+  integrity sha512-Ls9qiNZzW/OLFoI25wfjjAcrf2DZ975hn2vr6U9gyuxi2nooVbzQeFoQS5vQcbCt9QX5NY8ASEEAtlLdIa6KVg==
 
 react-native-status-bar-height@^2.2.0:
   version "2.5.0"

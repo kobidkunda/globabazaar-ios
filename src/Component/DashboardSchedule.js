@@ -9,7 +9,7 @@ import {
 } from '../Config/theme';
 import {Avatar, Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
-import {TEXTLLGWHITE, TEXTSMWHITE} from '../Style/TextStyle';
+import {TEXTDESCWHITE, TEXTLLGWHITE, TEXTSMWHITE} from '../Style/TextStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const DashboardSchedule = props => (
@@ -22,17 +22,17 @@ const DashboardSchedule = props => (
       style={{
         flex: 1,
         flexDirection: 'row',
-        height: 100,
+        height: 80,
       }}>
       <LinearGradient
-        colors={[BLUEDARK, BLUESLIGHT]}
-        start={{x: 0.0, y: 1.0}}
-        end={{x: 1.0, y: 1.0}}
+        colors={[BLUESLIGHT, BLUEDARK]}
+        start={{x: 0.0, y: 0.3}}
+        end={{x: 1.0, y: 0.7}}
         style={{
           flex: 3,
           elevation: 30,
           backgroundColor: BLUEDARK,
-          height: 100,
+          height: 80,
           borderTopRightRadius: 40,
           borderBottomRightRadius: 40,
         }}>
@@ -45,10 +45,11 @@ const DashboardSchedule = props => (
             style={{
               flex: 3,
               justifyContent: 'center',
-             // alignItems: 'center',
-                paddingLeft:10
+              // alignItems: 'center',
+              paddingLeft: 10,
             }}>
             <TEXTLLGWHITE>Anjan Shrestha</TEXTLLGWHITE>
+            <TEXTDESCWHITE>Self Deveopment Class</TEXTDESCWHITE>
             <TEXTSMWHITE>6:30 PM, Tuesday</TEXTSMWHITE>
           </View>
 
@@ -59,9 +60,9 @@ const DashboardSchedule = props => (
               alignItems: 'center',
             }}>
             <Icon
-              name={'message-video'}
+              name={'video-account'}
               size={55}
-              color={'rgba(255,255,255,0.22)'}
+              color={'rgba(255,255,255,0.12)'}
             />
           </View>
         </View>
@@ -71,9 +72,10 @@ const DashboardSchedule = props => (
         style={{
           flex: 1,
           // backgroundColor:BLUEDARK,
-          height: 100,
+          height: 80,
         }}>
         <Avatar
+          overlayContainerStyle={styles.overlayContainerStyle}
           rounded
           containerStyle={styles.containerStyle}
           //avatarStyle={styles.containerStyle}
@@ -92,8 +94,12 @@ const styles = StyleSheet.create({
   containerStyle: {
     justifyContent: 'center',
     paddingLeft: 6,
-    marginTop: 15,
+    marginTop: 0,
     elevation: 30,
+  },
+  overlayContainerStyle: {
+    borderColor: WHITE,
+    borderWidth: 3,
   },
 });
 

@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-  StatusBar,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  KeyboardAvoidingView,
+    Text,
+    View,
+    Dimensions,
+    StyleSheet,
+    ImageBackground,
+    StatusBar,
+    TouchableWithoutFeedback,
+    TouchableOpacity,
+    KeyboardAvoidingView, Image,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -24,6 +24,7 @@ import {BLUEDARK, BLUESLIGHT, ORANGE} from '../../Config/theme';
 import Youtube from './Component/Youtube';
 import DasboardTeacher from './Component/DasboardTeacher';
 import DasboardClass from './Component/DasboardClass';
+import {inject, observer} from 'mobx-react';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
 
@@ -77,21 +78,22 @@ export default class Dashboard extends Component {
           <View
             style={{
               position: 'absolute',
-              right: 0,
+              right: -120,
             }}>
-            <ImageBackground
+            <Image
               style={{
-                width: 200,
-                height: 165,
+                width: WIDTH+120,
+                height: 230,
+
               }}
-              source={require('../../Assets/Images/dashbordtop.png')}
+              source={require('../../Assets/Images/main-texture-gradient.png')}
             />
           </View>
           <View
             style={{
               justifyContent: 'center',
               alignItems: 'flex-start',
-              flex: 1,
+              flex: 1.3,
               paddingLeft: 22,
             }}>
             <TEXTLG>Hello</TEXTLG>
@@ -121,6 +123,7 @@ export default class Dashboard extends Component {
                   paddingRight: 10,
                 }}>
                 <CardWithIcons
+                    onPress={() => this.props.navigation.navigate('Profile')}
                   bgcolor={BLUESLIGHT}
                   text={' Profile'}
                   iconname={'account'}

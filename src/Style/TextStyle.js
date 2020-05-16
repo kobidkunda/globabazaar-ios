@@ -7,7 +7,7 @@ export const TEXTLLG = styled.Text`
   font-size: 25px
   font-family: 'MontserratBold'
   text-transform: uppercase
-  color: ${BLUEDARK}
+  color: ${WHITE}
 `;
 
 export const TEXTLLGWHITE = styled.Text`
@@ -17,8 +17,16 @@ export const TEXTLLGWHITE = styled.Text`
   color: ${WHITE}
 `;
 export const TEXTSMWHITE = styled.Text`
-  font-size: 10px
+  font-size: 9px
   font-family: 'MontserratMedium'
+  text-transform: uppercase
+  text-align:left
+  color: ${WHITE}
+`;
+
+export const TEXTDESCWHITE = styled.Text`
+  font-size: 13px
+  font-family: 'MontserratSemiBold'
   text-transform: uppercase
   text-align:left
   color: ${WHITE}
@@ -27,7 +35,7 @@ export const TEXTSMWHITE = styled.Text`
 export const TEXTLG = styled.Text`
   font-size: 24px
   font-family: 'MontserratSemiBold'
-  color: ${BLUEDARK}
+  color: ${WHITE}
 `;
 
 export const TEXTNL = styled.Text`
@@ -39,4 +47,17 @@ export const TEXTNLBLACK = styled.Text`
   font-size: 18px
   font-family: 'MontserratBold'
   color: ${DARKBLACK}
+`;
+
+export const TEXTPROFILEBLACK = styled.Text`
+  font-size: 18px
+  font-family: 'MontserratMedium'
+  color: #494949
+`;
+
+export const TEXTPROFILEBLACKVAL = styled.Text`
+  font-size: 18px
+  font-family: 'Montserratlight'
+  color: #717171
+  text-transform: uppercase
 `;

@@ -9,11 +9,10 @@ export default class Splash extends Component {
 
     render() {
         return (
-            <ImageBackground style={{
-                width:WIDTH,
-                height:HEIGHT
-            }} source={require('../Assets/Images/splashbg.png')}>
-            </ImageBackground>
+           <View>
+               <Text>Loading</Text>
+
+           </View>
         );
     }
 }

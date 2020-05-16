@@ -7,31 +7,21 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, StatusBar} from 'react-native';
 
-import {
-  Header,
-  LearnMoreLinks,
-  Colors,
-  DebugInstructions,
-  ReloadInstructions,
-} from 'react-native/Libraries/NewAppScreen';
 import Route from './src/View/Route';
-
+import stores from './src/Action/Index';
+import {Provider} from 'mobx-react';
+import Login from './src/View/Auth/Login';
 const App: () => React$Node = () => {
   return (
     <>
-      <StatusBar barStyle="dark-content" />
-      <SafeAreaView>
-        <Route />
-      </SafeAreaView>
+      <Provider {...stores}>
+        <StatusBar barStyle="light-content" />
+
+          <Route />
+
+      </Provider>
     </>
   );
 };

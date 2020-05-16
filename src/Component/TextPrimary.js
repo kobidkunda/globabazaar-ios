@@ -17,7 +17,7 @@ const TextPrimary = props => (
 const styles = StyleSheet.create({
     text: {
         color:WHITE,
-        fontSize:15,
+        fontSize:11,
         fontFamily:'MontserratBold',
         textTransform:'uppercase'
     // backgroundColor: BLUEDARK,

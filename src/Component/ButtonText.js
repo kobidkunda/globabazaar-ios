@@ -4,14 +4,14 @@ import {BLUEDARK, BLUESLIGHT, WHITE, WIDTH} from '../Config/theme';
 import {Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
-const ButtonOutline = props => (
+const ButtonText = props => (
   <View
     style={{
       width: WIDTH,
       padding: 10,
     }}>
     <Button
-      type={'outline'}
+      type={'clear'}
       onPress={props.onPress}
       buttonStyle={styles.buttonStyle}
       containerStyle={styles.containerStyle}
@@ -27,14 +27,13 @@ const styles = StyleSheet.create({
   },
   containerStyle: {
     elevation: 10,
-    borderWidth: 1,
-    borderColor: BLUESLIGHT,
+    borderWidth: 0,
   },
   titleStyle: {
-    color: BLUESLIGHT,
     fontFamily: 'MontserratSemiBold',
     textTransform: 'uppercase',
+      color:WHITE
   },
 });
 
-export default ButtonOutline;
+export default ButtonText;

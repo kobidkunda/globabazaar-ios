@@ -1,30 +1,43 @@
 import React, {Component} from 'react';
 import {
-  Text,
   View,
   Dimensions,
   StyleSheet,
   ImageBackground,
   Image,
-  TouchableWithoutFeedback,
   TouchableOpacity,
   KeyboardAvoidingView,
   ScrollView,
 } from 'react-native';
-import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
 import {Formik} from 'formik';
 import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
-import ButtonOutline from '../../Component/ButtonOutline';
-import TextPrimary from '../../Component/TextPrimary';
+import {inject, observer} from 'mobx-react';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
-
+@inject('Auth')
+@observer
 export default class Register extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false,
+        };
+    }
   OnLogin = async values => {
+        this.setState({
+            loading:true
+        })
     console.log(values);
+    let POST_DATA = await this.props.Auth.Register(values);
+
+    console.log(POST_DATA);
+      this.setState({
+          loading:false
+      })
   };
 
   inputs = {};
@@ -352,8 +365,8 @@ export default class Register extends Component {
                       onChangeText={handleChange('pincode')}
                       onBlur={() => setFieldTouched('pincode')}
                       autoCorrect={false}
-                      keyboardType={'default'}
-                      textContentType={'pincode'}
+                      keyboardType={'phone-pad'}
+                      textContentType={'phone'}
                       status={
                         touched.pincode && errors.pincode ? 'danger' : 'primary'
                       }
@@ -395,8 +408,8 @@ export default class Register extends Component {
 
                     <View>
                       <ButtonCustom
-                        title={'Login'}
-                        loading={false}
+                        title={'Register'}
+                        loading={this.state.loading}
                         onPre={handleSubmit}
                       />
                     </View>

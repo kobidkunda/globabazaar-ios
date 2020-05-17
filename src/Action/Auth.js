@@ -1,25 +1,77 @@
 import {observable, computed, action} from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
+import {
+  CLIENT_SECRET,
+  CLIENT_SECRET_ID,
+  LOGIN,
+  REGISTER,
+  TOKEN,
+} from '../Config/URL';
+import NetInfo from '@react-native-community/netinfo';
 
 export default class Auth {
   @observable logged = false;
   @observable online = false;
-  @observable token = null;
+  @observable access_token = null;
+  @observable expires_in = null;
+  @observable refresh_token = null;
+  @observable token_type = null;
 
-  @action CheckLogin = async () => {
+  @action CheckLogin = async () => {};
 
+  @action CheckOnline = async () => {
+    let CHKINT = await NetInfo.fetch();
+
+    return CHKINT.isConnected === true;
   };
 
-    @action CheckOnline = async () => {
+  @action Register = async values => {
+    let POST_REG = await fetch(REGISTER, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: values.fname,
+        email: values.email,
+        password: values.password,
+        phone: values.phone,
+        street: values.street,
+        city: values.city,
+        state: values.state,
+        pin_code: values.pincode,
+      }),
+    });
+    return await POST_REG.json();
+  };
 
-    };
+  @action Login = async values => {
+    let POST_ORDER = await fetch(LOGIN, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        username: values.username,
+        password: values.password,
+        grant_type: 'password',
+        client_id: CLIENT_SECRET_ID,
+        client_secret: CLIENT_SECRET,
+        provider: 'users',
+      }),
+    });
 
-    @action Login = async () => {
-
-    };
-
-    @action Register = async () => {
-
-    };
-
+    let LoginData = await POST_ORDER.json();
+    if (POST_ORDER.status === 200) {
+      this.access_token = LoginData.access_token;
+      this.expires_in = LoginData.expires_in;
+      this.refresh_token = LoginData.refresh_token;
+      this.token_type = LoginData.token_type;
+      return true;
+    } else {
+      return false;
+    }
+  };
 }

@@ -22,12 +22,31 @@ import ButtonText from '../../Component/ButtonText';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
-@inject('Auth')
+@inject('Auth','User')
 @observer
 export default class Login extends Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false,
+        };
+    }
   OnLogin = async (values) => {
-      console.log(values);
-      this.props.Auth.logged = true;
+      this.setState({
+          loading:true
+      });
+
+      if (await this.props.Auth.CheckOnline() === true && await this.props.Auth.Login(values) === true){
+
+          let userdata = await this.props.User.getUserDetails(this.props.Auth.access_token);
+
+      } else {
+          alert('invalid')
+      }
+      this.setState({
+          loading:false
+      });
   };
 
   inputs = {};
@@ -180,7 +199,7 @@ export default class Login extends Component {
                   <View>
                     <ButtonCustom
                       title={'Login'}
-                      loading={false}
+                      loading={this.state.loading}
                       onPre={handleSubmit}
                     />
 

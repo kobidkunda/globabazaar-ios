@@ -1,0 +1,9 @@
+//export const BASE_URL = 'https://service.emporiummarketing.com';
+export const BASE_URL = 'https://gb7app.tecions.tk';
+export const CLIENT_SECRET = 'bMv3wtVnfYJDqyBJKNt2DSdFaTiftmh7PXjhlgYv';
+export const CLIENT_SECRET_ID = 8;
+export const APP_VERSON = 20;
+//export const BASE_URL = 'http://192.168.0.104:8000';
+export const LOGIN = BASE_URL + '/oauth/token';
+export const REGISTER = BASE_URL + '/api/user/register';
+export const PROFILE = BASE_URL + '/api/user';

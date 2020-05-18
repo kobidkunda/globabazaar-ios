@@ -5,6 +5,7 @@ import AvatarTeacher from '../../../Component/AvatarTeacher';
 import {Col, Grid} from 'react-native-easy-grid';
 import {inject, observer} from 'mobx-react';
 import {BASE_URL} from '../../../Config/URL';
+import CircleLoader from '../../../Component/Loader/CircleLoader';
 @inject('Auth','User','Teacher')
 @observer
 export default class DasboardTeacher extends Component {
@@ -12,6 +13,7 @@ export default class DasboardTeacher extends Component {
     super(props);
 
     this.state = {
+        loading: true,
         teachers: [
             {
                 name: 'https://randomuser.me/api/portraits/women/47.jpg'
@@ -26,27 +28,31 @@ export default class DasboardTeacher extends Component {
   }
 
  async componentDidMount(): void {
+
       let _Token = await  this.props.Auth.GetToken();
       let Teacherlist = await  this.props.Teacher.GetRandomTeacher(await _Token);
-      console.log(Teacherlist)
+      //console.log(Teacherlist)
 
       this.setState({
-          teachers: Teacherlist
+          teachers: Teacherlist,
+          loading: false
       })
 
 
   }
 
+
     renderButtons(teacher) {
         return teacher.map((item, index) => {
-            return(
-               <Col key={item.id}>
-                   <AvatarTeacher
-                       key={item.id}
-                       url={BASE_URL+item.image}
-                   />
-               </Col>
-            );
+            return (
+                <Col key={item.id}>
+                    <AvatarTeacher
+                        key={item.id}
+                        url={BASE_URL+item.image}
+                    />
+
+                </Col>
+            )
         })
 
     }
@@ -54,11 +60,26 @@ export default class DasboardTeacher extends Component {
     render() {
 
     return (
-      <Grid
-        style={{
+      <Grid style={{
           width: 160,
-        }}>
-         {this.renderButtons(this.state.teachers)}
+      }}>
+          {this.state.loading === true? (
+                  <Grid
+                      style={{
+
+                      }}>
+                <Col ><CircleLoader/></Col>
+                <Col ><CircleLoader/></Col>
+                <Col><CircleLoader/></Col>
+                  </Grid>
+             ) :
+              (
+                  <Grid
+                      style={{
+                      }}>
+              {this.renderButtons(this.state.teachers)}
+                  </Grid>
+          )}
 
       </Grid>
     );

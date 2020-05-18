@@ -4,7 +4,8 @@ import {
   CLIENT_SECRET_ID,
   CREATE_ORDER,
   GET_RANDOM_TEACHER,
-  UPLOAD_AVATAR,
+  UPLOAD_ADDRESS_PROOF,
+  UPLOAD_AVATAR, UPLOAD_IDENTITY_PROOF,
 } from '../Config/URL';
 
 export default class Payment {
@@ -37,12 +38,12 @@ export default class Payment {
         avatar: image,
       }),
     });
-    let USER_PROFILE_DARTA = await USER_PROFILE.json().user;
+    let USER_PROFILE_DARTA = await USER_PROFILE.json();
 
     if (USER_PROFILE.status === 200) {
       return {
         status: true,
-        data: USER_PROFILE_DARTA,
+        data: USER_PROFILE_DARTA.user,
       };
     } else {
       return {
@@ -51,33 +52,57 @@ export default class Payment {
     }
   };
 
-  @action AddressUpload = async access_token => {
-    let USER_PROFILE = await fetch(CREATE_ORDER, {
-      method: 'GET',
+  @action AddressUpload = async (access_token, base64) => {
+    let image = 'data:image/jpeg;base64,' + base64;
+    let USER_PROFILE = await fetch(UPLOAD_ADDRESS_PROOF, {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + access_token,
       },
+      body: JSON.stringify({
+        address_proof: image,
+      }),
     });
-    let USER_PROFILE_DARTA = await USER_PROFILE.json().order;
-    console.log(USER_PROFILE_DARTA);
-    this.razorpay_order_id = USER_PROFILE_DARTA.razorpay_order_id;
-    return USER_PROFILE_DARTA;
+
+    let USER_PROFILE_DARTA = await USER_PROFILE.json();
+    if (USER_PROFILE.status === 200) {
+      return {
+        status: true,
+        data: USER_PROFILE_DARTA.user,
+      };
+    } else {
+      return {
+        status: false,
+      };
+    }
   };
 
-  @action AddressIdentity = async access_token => {
-    let USER_PROFILE = await fetch(CREATE_ORDER, {
-      method: 'GET',
+  @action IdentityUpload = async (access_token, base64) => {
+    let image = 'data:image/jpeg;base64,' + base64;
+    let USER_PROFILE = await fetch(UPLOAD_IDENTITY_PROOF, {
+      method: 'POST',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + access_token,
       },
+      body: JSON.stringify({
+        id_proof: image,
+      }),
     });
-    let USER_PROFILE_DARTA = await USER_PROFILE.json().order;
-    console.log(USER_PROFILE_DARTA);
-    this.razorpay_order_id = USER_PROFILE_DARTA.razorpay_order_id;
-    return USER_PROFILE_DARTA;
+
+    let USER_PROFILE_DARTA = await USER_PROFILE.json();
+    if (USER_PROFILE.status === 200) {
+      return {
+        status: true,
+        data: USER_PROFILE_DARTA.user,
+      };
+    } else {
+      return {
+        status: false,
+      };
+    }
   };
 }

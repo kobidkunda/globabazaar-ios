@@ -36,9 +36,9 @@ export default class Route extends Component {
           _TOKEN !== null
           && await this.props.User.getUserDetails(_TOKEN)  === true){
 
-          console.log(_TOKEN)
+          console.log(this.props.User.route);
         // await SplashScreen.hide();
-          this.props.Auth.logged =  2;
+          this.props.Auth.logged =  true;
 
       } else {
           this.props.Auth.logged =  false;
@@ -49,7 +49,7 @@ export default class Route extends Component {
 
   render() {
 
-      if (this.props.Auth.logged === true){
+      if (this.props.Auth.logged === true && this.props.User.route === 3){
           return (
               <NavigationContainer>
                   <Stack.Navigator>
@@ -58,7 +58,7 @@ export default class Route extends Component {
                   </Stack.Navigator>
               </NavigationContainer>
           );
-      } else if (this.props.Auth.logged === false){
+      } else if (this.props.Auth.logged === false ){
           return (
               <NavigationContainer>
                   <Stack.Navigator>
@@ -69,13 +69,25 @@ export default class Route extends Component {
               </NavigationContainer>
           );
       }
-      else if (this.props.Auth.logged === 2){
+      else if (this.props.Auth.logged === true  && this.props.User.route === 1){
           return (
               <NavigationContainer>
                   <Stack.Navigator>
-                      <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
-                      <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
+                      <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
                       <Stack.Screen options={InitatePayment.navigationOptions} name="InitatePayment" component={InitatePayment} />
+                      <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
+                      <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
+                  </Stack.Navigator>
+              </NavigationContainer>
+          );
+      }
+
+      else if (this.props.Auth.logged === true  && this.props.User.route === 2){
+          return (
+              <NavigationContainer>
+                  <Stack.Navigator>
+                      <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
+                      <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
                   </Stack.Navigator>
               </NavigationContainer>
           );
@@ -83,7 +95,7 @@ export default class Route extends Component {
           return (
               <NavigationContainer>
                   <Stack.Navigator>
-                      <Stack.Screen options={{headerShown: false}}  name="Login" component={Splash} />
+                      <Stack.Screen options={{headerShown: false}}  name="Splash" component={Splash} />
                   </Stack.Navigator>
               </NavigationContainer>
           );

@@ -48,9 +48,11 @@ const DashboardSchedule = props => (
               // alignItems: 'center',
               paddingLeft: 10,
             }}>
-            <TEXTLLGWHITE>Anjan Shrestha</TEXTLLGWHITE>
-            <TEXTDESCWHITE>Self Deveopment Class</TEXTDESCWHITE>
-            <TEXTSMWHITE>6:30 PM, Tuesday</TEXTSMWHITE>
+            <TEXTLLGWHITE>Abhhyy ddd</TEXTLLGWHITE>
+            <TEXTDESCWHITE>{props.title}</TEXTDESCWHITE>
+            <TEXTSMWHITE>
+              {props.date} {props.time}
+            </TEXTSMWHITE>
           </View>
 
           <View

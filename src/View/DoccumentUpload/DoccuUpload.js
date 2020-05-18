@@ -5,7 +5,7 @@ import {
     Dimensions,
     StyleSheet,
     StatusBar,
-    ScrollView, TouchableOpacity,
+    ScrollView, TouchableOpacity, Alert,
 } from 'react-native';
 import {
     BLUEDARK,
@@ -21,6 +21,7 @@ import ButtonCustom from '../../Component/ButtonCustom';
 import {inject, observer} from 'mobx-react';
 import LottieView from "lottie-react-native";
 import ImagePicker from 'react-native-image-crop-picker';
+import ButtonCustomDisabled from '../../Component/ButtonCustomDisabled';
 
 @inject('Auth','User','Payment')
 @observer
@@ -49,6 +50,9 @@ export default class DoccuUpload extends Component {
             loop0: false,
             loop: false,
             loopt: false,
+            up: false,
+            up0: false,
+            upt: false,
 
         };
     }
@@ -61,34 +65,16 @@ export default class DoccuUpload extends Component {
 
     }
 
-    UploadAddressProof = async ()=> {
-        ImagePicker.openPicker({
-            width: 300,
-            height: 400,
-            cropping: true,
-            mediaType: 'photo',
-            includeBase64:true
-        }).then(image => {
-            this.setState({
-                loop: true,
 
-            })
-            this.animation.play(30, 60);
-            console.log(image);
-        });
-
-    }
-
-    UploadImage = async ()=> {
+    UploadSelfile = async () => {
         let options = {
-            width: 300,
-            height: 400,
+            width: 1024,
+            height: 1440,
             cropping: true,
             mediaType: 'photo',
             includeBase64:true
         }
         let _TOKEN =  await this.props.Auth.GetToken();
-
         let ImageUploadAvatar = await ImagePicker.openCamera(options);
         if (ImageUploadAvatar !== null){
             this.setState({
@@ -98,14 +84,80 @@ export default class DoccuUpload extends Component {
             this.animation0.play(30, 60);
 
             let PushToserver = await this.props.Payment.AvatarUpload(_TOKEN,ImageUploadAvatar.data);
+            console.log('PushToserver');
             console.log(PushToserver);
             if (PushToserver.status === true){
 
                 this.setState({
                     loop0: false,
+                    up0: true,
 
                 });
                 this.animation0.play(60, 100);
+            }  else {
+                this.setState({
+                    loop0: false,
+
+                });
+                this.animation0.play(30, 30);
+                Alert.alert(
+                    "Error in Upload ",
+                    "Check for your Internet Connection",
+                    [
+                        { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                    ],
+                    { cancelable: false }
+                );
+            }
+
+
+        }
+    }
+
+
+
+    UploadAddressProof = async ()=> {
+        let options = {
+            width: 1024,
+            height: 1440,
+            cropping: true,
+            mediaType: 'photo',
+            includeBase64:true
+        }
+        let _TOKEN =  await this.props.Auth.GetToken();
+        let ImageUploadAvatar = await ImagePicker.openPicker(options);
+        if (ImageUploadAvatar !== null){
+            this.setState({
+                loop: true,
+
+            });
+            this.animation.play(30, 60);
+
+            let PushToserver = await this.props.Payment.AddressUpload(_TOKEN,ImageUploadAvatar.data);
+            console.log('PushToserver');
+            console.log(PushToserver);
+            if (PushToserver.status === true){
+
+                this.setState({
+                    loop: false,
+                    up: true,
+
+                });
+                this.animation.play(60, 100);
+            }  else {
+                this.setState({
+                    loop: false,
+
+                });
+                this.animation.play(30, 30);
+                Alert.alert(
+                    "Error in Upload ",
+                    "Check for your Internet Connection",
+                    [
+                        { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                    ],
+                    { cancelable: false }
+                );
             }
 
 
@@ -118,20 +170,57 @@ export default class DoccuUpload extends Component {
 
     }
 
+    UploadComplete = async ()  => {
+
+        this.props.User.route = 3
+    }
+
     UploadIDProof = async ()=> {
-        ImagePicker.openPicker({
-            width: 300,
-            height: 400,
+        let options = {
+            width: 1024,
+            height: 1440,
             cropping: true,
             mediaType: 'photo',
             includeBase64:true
-        }).then(image => {
+        }
+        let _TOKEN =  await this.props.Auth.GetToken();
+        let ImageUploadAvatar = await ImagePicker.openPicker(options);
+        if (ImageUploadAvatar !== null){
             this.setState({
                 loopt: true,
+
             });
             this.animationt.play(30, 60);
-            console.log(image);
-        });
+
+            let PushToserver = await this.props.Payment.IdentityUpload(_TOKEN,ImageUploadAvatar.data);
+            console.log(PushToserver)
+            if (PushToserver.status === true){
+
+                this.setState({
+                    loopt: false,
+                    upt: true,
+
+                });
+                this.animationt.play(60, 100);
+            } else {
+                this.setState({
+                    loopt: false,
+
+                });
+                this.animationt.play(30, 30);
+                Alert.alert(
+                    "Error in Upload ",
+                    "Check for your Internet Connection",
+                    [
+                        { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                    ],
+                    { cancelable: false }
+                );
+            }
+
+
+        }
+
 
     }
 
@@ -162,7 +251,7 @@ export default class DoccuUpload extends Component {
                         margin:15
                     }}>
                     <TouchableOpacity
-                        onPress={() => this.UploadImage()}
+                        onPress={() => this.UploadSelfile()}
                         style={{
                         alignItems: 'center',
                         justifyContent: 'center',
@@ -246,11 +335,20 @@ export default class DoccuUpload extends Component {
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                     }}>
-                    <ButtonCustom
-                        onPre={() => this.CreateOrder()}
-                        // loading={this.state.loading}
-                        title={'Confirm Upload'}
-                    />
+                    {
+                        this.state.up === true && this.state.up0 === true && this.state.upt === true  ?(
+                            <ButtonCustom
+                                onPre={() => this.UploadComplete()}
+                                // loading={this.state.loading}
+                                title={'Confirm Upload'}
+                            />
+                        ) : (
+                            <ButtonCustomDisabled
+                                // loading={this.state.loading}
+                                title={'Upload Pending'}
+                            />
+                        )
+                    }
                 </View>
             </View>
         );

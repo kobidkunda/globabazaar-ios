@@ -47,7 +47,7 @@ export default class ConfirmPayment extends Component {
     };
 
     CreateOrder = async () => {
-        this.setState({
+      /*  this.setState({
             loading: true
         });
         let _TOKEN =  await this.props.Auth.GetToken();
@@ -55,7 +55,8 @@ export default class ConfirmPayment extends Component {
         console.log(Create_order)
         this.setState({
             loading: false
-        });
+        });*/
+      this.props.navigation.navigate('ConfirmPayment')
     }
 
     constructor(props) {

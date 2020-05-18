@@ -7,6 +7,8 @@ import DashboardSchedule from '../../../Component/DashboardSchedule';
 import AvatarTeacher from '../../../Component/AvatarTeacher';
 import {BASE_URL} from '../../../Config/URL';
 import {inject, observer} from 'mobx-react';
+import CircleLoader from '../../../Component/Loader/CircleLoader';
+import ClassLoader from '../../../Component/Loader/ClassLoader';
 @inject('Auth','User','Class')
 @observer
 export default class DasboardClass extends Component {
@@ -14,6 +16,7 @@ export default class DasboardClass extends Component {
     super(props);
 
     this.state = {
+        loading: true,
       class : [
 
       ]
@@ -23,10 +26,11 @@ export default class DasboardClass extends Component {
 async  componentDidMount(): void {
     let _Token = await  this.props.Auth.GetToken();
     let Teacherlist = await  this.props.Class.upcomingClass(await _Token);
-    console.log(Teacherlist)
+    console.log(Teacherlist);
 
     this.setState({
-      class: Teacherlist
+      class: Teacherlist,
+        loading:false
     })
 
   }
@@ -37,6 +41,10 @@ async  componentDidMount(): void {
           <Row>
             <DashboardSchedule
                 url={'https://randomuser.me/api/portraits/women/47.jpg'}
+                title={item.title}
+                time={item.time}
+                date={item.date}
+
             />
           </Row>
       );
@@ -50,9 +58,25 @@ async  componentDidMount(): void {
           justifyContent: 'center',
           alignItems: 'center',
       }}>
-        {
-          this.renderButtons(this.state.class)
-        }
+
+          {this.state.loading === true? (
+                  <Grid
+                      style={{
+                          padding: 10
+
+                      }}>
+                      <Row ><ClassLoader/></Row>
+                      <Row ><ClassLoader/></Row>
+                      <Row><ClassLoader/></Row>
+                  </Grid>
+              ) :
+              (
+                  <Grid
+                      style={{
+                      }}>
+                      { this.renderButtons(this.state.class)}
+                  </Grid>
+              )}
       </Grid>
     );
   }

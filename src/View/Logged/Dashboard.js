@@ -25,6 +25,7 @@ import Youtube from './Component/Youtube';
 import DasboardTeacher from './Component/DasboardTeacher';
 import DasboardClass from './Component/DasboardClass';
 import {inject, observer} from 'mobx-react';
+import ButtonCustomDisabled from '../../Component/ButtonCustomDisabled';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
 @inject('Auth','User')
@@ -37,24 +38,22 @@ export default class Dashboard extends Component {
       otpsent: false,
       editable: true,
       loading: false,
+        liveclass: false
     };
   }
-  OnLogin = async values => {
-    console.log(values);
-    this.setState({
-      editable: false,
-      otpsent: true,
-      loading: false,
-    });
-  };
 
-  inputs = {};
-  // function to focus the field
-  focusTheField = id => {
-    this.inputs[id].focus();
-  };
 
-  render() {
+ async componentDidMount(): void {
+     let _Token = await  this.props.Auth.GetToken();
+     let LiveClass = await this.props.User.getLiveClass(_Token);
+      console.log(LiveClass);
+
+      this.setState({
+          liveclass: LiveClass
+      })
+ }
+
+    render() {
     return (
       <LinearGradient
         colors={[
@@ -179,8 +178,13 @@ export default class Dashboard extends Component {
               flex: 0.5,
               paddingTop: 20,
             }}>
+                {this.state.liveclass === true? (
+                    <ButtonCustom title={'View Live Class'}/>
+                ): (
+                    <ButtonCustomDisabled title={'No Live Class'}/>
+                )}
 
-                <ButtonCustom title={'No Live Class'}/>
+
 
           </View>
         </View>

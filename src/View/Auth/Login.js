@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {
-    Text,
+    Alert,
     View,
     Dimensions,
     StyleSheet,
@@ -40,9 +40,28 @@ export default class Login extends Component {
       if (await this.props.Auth.CheckOnline() === true && await this.props.Auth.Login(values) === true){
 
           let userdata = await this.props.User.getUserDetails(this.props.Auth.access_token);
+          console.log(userdata);
+          if (userdata === true){
+              this.props.Auth.logged =  true;
+              this.setState({
+                  loading:false
+              });
+          }
 
       } else {
-          alert('invalid')
+          Alert.alert(
+              "Invalid Login",
+              "Check for your Username & password or your Internet Connection",
+              [
+                  {
+                      text: "Register a Account",
+                      onPress: () => this.props.navigation.navigate('Register'),
+                      style: "cancel"
+                  },
+                  { text: "Try Again", onPress: () => console.log("OK Pressed") }
+              ],
+              { cancelable: false }
+          );
       }
       this.setState({
           loading:false

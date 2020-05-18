@@ -27,7 +27,8 @@ import DasboardClass from './Component/DasboardClass';
 import {inject, observer} from 'mobx-react';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
-
+@inject('Auth','User')
+@observer
 export default class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -97,7 +98,7 @@ export default class Dashboard extends Component {
               paddingLeft: 22,
             }}>
             <TEXTLG>Hello</TEXTLG>
-            <TEXTLLG>Anjan Kumar</TEXTLLG>
+            <TEXTLLG>{this.props.User.fname} {this.props.User.fname}</TEXTLLG>
           </View>
 
           <View
@@ -136,8 +137,8 @@ export default class Dashboard extends Component {
                 }}>
                 <CardWithIcons
                   bgcolor={ORANGE}
-                  text={'Remainder'}
-                  iconname={'calendar'}
+                  text={'Alerts'}
+                  iconname={'bell'}
                 />
               </Col>
             </Grid>

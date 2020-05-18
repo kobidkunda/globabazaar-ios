@@ -8,9 +8,8 @@ import {
   TOKEN,
 } from '../Config/URL';
 import NetInfo from '@react-native-community/netinfo';
-
 export default class Auth {
-  @observable logged = false;
+  @observable logged = null;
   @observable online = false;
   @observable access_token = null;
   @observable expires_in = null;
@@ -18,11 +17,22 @@ export default class Auth {
   @observable token_type = null;
 
   @action CheckLogin = async () => {};
+  @action GetToken = async () => {
+    const value = await AsyncStorage.getItem('@access_token');
+    return value;
+  };
 
   @action CheckOnline = async () => {
     let CHKINT = await NetInfo.fetch();
 
     return CHKINT.isConnected === true;
+  };
+
+  @action Logout = async () => {
+    await AsyncStorage.removeItem('@token_type');
+    await AsyncStorage.removeItem('@access_token');
+    await AsyncStorage.removeItem('@refresh_token');
+    this.logged = false;
   };
 
   @action Register = async values => {
@@ -65,6 +75,9 @@ export default class Auth {
 
     let LoginData = await POST_ORDER.json();
     if (POST_ORDER.status === 200) {
+      await AsyncStorage.setItem('@token_type', LoginData.token_type);
+      await AsyncStorage.setItem('@access_token', LoginData.access_token);
+      await AsyncStorage.setItem('@refresh_token', LoginData.refresh_token);
       this.access_token = LoginData.access_token;
       this.expires_in = LoginData.expires_in;
       this.refresh_token = LoginData.refresh_token;

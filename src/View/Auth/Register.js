@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {
-  View,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  TouchableOpacity,
-  KeyboardAvoidingView,
-  ScrollView,
+    View,
+    Dimensions,
+    StyleSheet,
+    ImageBackground,
+    Image,
+    TouchableOpacity,
+    KeyboardAvoidingView,
+    ScrollView, Alert,
 } from 'react-native';
 import * as yup from 'yup';
 import {Formik} from 'formik';
@@ -34,10 +34,39 @@ export default class Register extends Component {
     console.log(values);
     let POST_DATA = await this.props.Auth.Register(values);
 
+    if (POST_DATA.status.status === 200){
+        Alert.alert(
+            "Registration Successful",
+            "Go back and login to your account",
+            [
+                {
+                    text: "Go back",
+                    onPress: () => this.props.navigation.goBack(),
+                    style: "cancel"
+                },
+            ],
+            { cancelable: false }
+        );
+        this.setState({
+            loading:false
+        })
+
+    } else {
+        Alert.alert(
+            "Invalid Data",
+            "Check for your Data or your Internet Connection",
+            [
+                { text: "Try Again", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+        );
+        this.setState({
+            loading:false
+        })
+    }
+
     console.log(POST_DATA);
-      this.setState({
-          loading:false
-      })
+
   };
 
   inputs = {};

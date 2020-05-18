@@ -43,7 +43,8 @@ export default class Auth {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        name: values.fname,
+        first_name: values.fname,
+        last_name: values.lname,
         email: values.email,
         password: values.password,
         phone: values.phone,
@@ -53,7 +54,12 @@ export default class Auth {
         pin_code: values.pincode,
       }),
     });
-    return await POST_REG.json();
+   // return await POST_REG.json();
+    return {
+      status: POST_REG,
+      data: POST_REG.json()
+    }
+
   };
 
   @action Login = async values => {

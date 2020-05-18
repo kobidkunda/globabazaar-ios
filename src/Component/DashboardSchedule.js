@@ -48,7 +48,7 @@ const DashboardSchedule = props => (
               // alignItems: 'center',
               paddingLeft: 10,
             }}>
-            <TEXTLLGWHITE>Abhhyy ddd</TEXTLLGWHITE>
+            <TEXTLLGWHITE>{props.teacher}</TEXTLLGWHITE>
             <TEXTDESCWHITE>{props.title}</TEXTDESCWHITE>
             <TEXTSMWHITE>
               {props.date} {props.time}

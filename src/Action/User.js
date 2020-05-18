@@ -29,6 +29,9 @@ export default class User {
         Accept: 'application/json',
         'Content-Type': 'application/json',
         Authorization: 'Bearer ' + access_token,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: 0,
       },
     });
 
@@ -81,9 +84,9 @@ export default class User {
       ) {
         this.route = 2;
       } else if (
-        this.avatar === null ||
-        this.address_proof === null ||
-        (this.id_proof === null && this.is_premium === true)
+        this.avatar !== null ||
+        this.address_proof !== null ||
+        (this.id_proof !== null && this.is_premium === true)
       ) {
         this.route = 3;
       } else {

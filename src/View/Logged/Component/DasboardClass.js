@@ -40,7 +40,8 @@ async  componentDidMount(): void {
       return(
           <Row>
             <DashboardSchedule
-                url={'https://randomuser.me/api/portraits/women/47.jpg'}
+                teacher={item.seminar_to_teacher.name}
+                url={BASE_URL+ item.seminar_to_teacher.image}
                 title={item.title}
                 time={item.time}
                 date={item.date}

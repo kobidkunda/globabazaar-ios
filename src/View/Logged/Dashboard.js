@@ -38,7 +38,8 @@ export default class Dashboard extends Component {
       otpsent: false,
       editable: true,
       loading: false,
-        liveclass: false
+        liveclass: false,
+        liveclassdata: null
     };
   }
 
@@ -46,11 +47,17 @@ export default class Dashboard extends Component {
  async componentDidMount(): void {
      let _Token = await  this.props.Auth.GetToken();
      let LiveClass = await this.props.User.getLiveClass(_Token);
-      console.log(LiveClass);
+console.log('llii');
+     //console.log(LiveClass)
+      if (LiveClass !== false){
+          console.log(LiveClass);
+          this.setState({
+              liveclassdata: LiveClass[0],
+              liveclass: true
+          })
+      }
 
-      this.setState({
-          liveclass: LiveClass
-      })
+
  }
 
     render() {
@@ -112,7 +119,7 @@ export default class Dashboard extends Component {
                 }}>
                 <CardWithIcons
                   bgcolor={BLUEDARK}
-                  text={'Live Class'}
+                  text={'Schedule'}
                   iconname={'television'}
                 />
               </Col>
@@ -179,7 +186,10 @@ export default class Dashboard extends Component {
               paddingTop: 20,
             }}>
                 {this.state.liveclass === true? (
-                    <ButtonCustom title={'View Live Class'}/>
+                    <ButtonCustom onPre={() => this.props.navigation.navigate('Youtube',{
+                        youtube_id: this.state.liveclassdata.youtube_id,
+                        }
+                    )} title={'View Live Class'}/>
                 ): (
                     <ButtonCustomDisabled title={'No Live Class'}/>
                 )}

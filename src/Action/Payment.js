@@ -19,10 +19,11 @@ export default class Payment {
         Authorization: 'Bearer ' + access_token,
       },
     });
-    let USER_PROFILE_DARTA = await USER_PROFILE.json().order;
-    console.log(USER_PROFILE_DARTA);
-    this.razorpay_order_id = USER_PROFILE_DARTA.razorpay_order_id;
-    return USER_PROFILE_DARTA;
+    let USER_PROFILE_DARTA = await USER_PROFILE.json();
+   // console.log(USER_PROFILE_DARTA);
+   let order =  USER_PROFILE_DARTA.order;
+    this.razorpay_order_id = order.razorpay_order_id;
+    return order;
   };
 
   @action AvatarUpload = async (access_token, base64) => {

@@ -15,6 +15,7 @@ import ForgotPassword from './Auth/ForgotPassword';
 import InitatePayment from './Payment/InitatePayment';
 import ConfirmPayment from './Payment/ConfirmPayment';
 import DoccuUpload from './DoccumentUpload/DoccuUpload';
+import Youtube from './Logged/Component/Youtube';
 
 
 const Stack = createStackNavigator();
@@ -54,6 +55,7 @@ export default class Route extends Component {
               <NavigationContainer>
                   <Stack.Navigator>
                       <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
+                      <Stack.Screen options={Youtube.navigationOptions}  name="Youtube" component={Youtube} />
                       <Stack.Screen   name="Profile" component={Profile} />
                   </Stack.Navigator>
               </NavigationContainer>
@@ -73,7 +75,7 @@ export default class Route extends Component {
           return (
               <NavigationContainer>
                   <Stack.Navigator>
-                      <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
+
                       <Stack.Screen options={InitatePayment.navigationOptions} name="InitatePayment" component={InitatePayment} />
                       <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
                       <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />

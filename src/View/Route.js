@@ -26,7 +26,7 @@ export default class Route extends Component {
     super(props);
 
     this.state = {
-      data: [],
+        model: [],
     };
   }
 
@@ -37,8 +37,7 @@ export default class Route extends Component {
           _TOKEN !== null
           && await this.props.User.getUserDetails(_TOKEN)  === true){
 
-          console.log(this.props.User.route);
-        // await SplashScreen.hide();
+          let checkroute = await this.props.User.CheckRoute();
           this.props.Auth.logged =  true;
 
       } else {
@@ -88,7 +87,6 @@ export default class Route extends Component {
           return (
               <NavigationContainer>
                   <Stack.Navigator>
-                      <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
                       <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
                   </Stack.Navigator>
               </NavigationContainer>

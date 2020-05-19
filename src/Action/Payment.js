@@ -20,9 +20,8 @@ export default class Payment {
       },
     });
     let USER_PROFILE_DARTA = await USER_PROFILE.json();
-   // console.log(USER_PROFILE_DARTA);
-   let order =  USER_PROFILE_DARTA.order;
-    this.razorpay_order_id = order.razorpay_order_id;
+    let order = USER_PROFILE_DARTA;
+    this.razorpay_order_id = order;
     return order;
   };
 

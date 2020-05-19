@@ -5,13 +5,13 @@ import {
     Dimensions,
     StyleSheet,
     StatusBar,
-    ScrollView,
+    ScrollView, ActivityIndicator,
 } from 'react-native';
 import {
     BLUEDARK,
-    BLUESLIGHT,
+    BLUESLIGHT, HEIGHT,
     LIGHTERBLACK,
-    WHITE,
+    WHITE, WIDTH,
     YELLOW,
 } from '../../Config/theme';
 import {
@@ -20,19 +20,21 @@ import {
     TEXTLLGWHITE,
     TEXTLLGWHITEP,
     TEXTLLlG,
-    TEXTNL,
+    TEXTNL, TEXTNLBLACKD,
 } from '../../Style/TextStyle';
 import LinearGradient from 'react-native-linear-gradient';
 import ButtonCustom from '../../Component/ButtonCustom';
 import {inject, observer} from 'mobx-react';
-import UserHeap from './UserHeap';
+import QRCode from 'react-native-qrcode-svg';
 import LottieView from "lottie-react-native";
+import Modal from 'react-native-modal';
+import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
 
-let HEIGHT = Dimensions.get('screen').height;
-let WIDTH = Dimensions.get('screen').width;
 @inject('Auth','User','Payment')
 @observer
 export default class ConfirmPayment extends Component {
+
+
     static navigationOptions = {
         title: 'Payment Confirm',
         headerStyle: {
@@ -46,27 +48,61 @@ export default class ConfirmPayment extends Component {
         },
     };
 
-    CreateOrder = async () => {
-       /*this.setState({
-            loading: true
-        });
-        let _TOKEN =  await this.props.Auth.GetToken();
-        let Create_order = await this.props.Payment.CreatePayment(_TOKEN);
-        console.log(Create_order)
-        this.setState({
-            loading: false
-        });*/
-      this.props.navigation.navigate('ConfirmPayment')
-    }
-
     constructor(props) {
         super(props);
 
         this.state = {
             data: [],
             loading: false,
+            model:false,
+            paymentbtn: true,
+            offlinepayment: false,
+            modelheight: 5
         };
     }
+
+    CreateOrder = async () => {
+       this.setState({
+            loading: true
+        });
+        let _TOKEN =  await this.props.Auth.GetToken();
+        let Create_order = await this.props.Payment.CreatePayment(_TOKEN);
+        console.log(_TOKEN)
+        console.log(Create_order)
+        this.setState({
+            loading: false
+        });
+     // this.props.navigation.navigate('ConfirmPayment')
+    }
+
+    componentWillUnmount() {
+        clearTimeout(this.timer);
+    }
+    CreateOrderCash = async () => {
+        this.setState({
+            offlinepayment: true,
+            paymentbtn: false,
+            modelheight : 2.5
+        });
+
+        this.timer = setInterval(()=> this.Checkupdatesonofline(), 3000)
+
+
+        // this.props.navigation.navigate('ConfirmPayment')
+    };
+
+    Checkupdatesonofline = async () => {
+        let _TOKEN =  await this.props.Auth.GetToken();
+        let checkroute = await this.props.User.getUserDetailsRecheck(_TOKEN);
+
+        let checkroutet = await this.props.User.CheckRoute();
+
+
+    }
+
+
+
+
 
     componentDidMount(): void {
         this.animation.play();
@@ -94,6 +130,7 @@ export default class ConfirmPayment extends Component {
                         margin: 5,
                         elevation: 5,
                         borderRadius: 5,
+                        padding:10
                     }}>
                     <View
                         style={{
@@ -117,6 +154,7 @@ export default class ConfirmPayment extends Component {
                         margin: 5,
                         elevation: 5,
                         borderRadius: 5,
+                        padding:10
                     }}>
                     <View
                         style={{
@@ -156,6 +194,107 @@ export default class ConfirmPayment extends Component {
                     />
                 </View>
 
+                <Modal
+                    isVisible={this.state.model}
+                    animationIn={'slideInUp'}
+                    useNativeDriver={true}
+                    animationInTiming={700}
+                    animationOutTiming={700}
+                    backdropTransitionOutTiming={1000}
+                    onSwipeComplete={() => this.setState({model: false})}
+                    swipeDirection="down"
+                    style={{margin: 0}}
+                    onBackButtonPress={() =>
+                        this.setState({
+                            model: false,
+                        })
+                    }>
+                    <View
+                        style={{
+                            position: 'absolute',
+                            flex:1,
+                            bottom: 0,
+                            width: WIDTH,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            backgroundColor:'#ffffff',
+                            height: HEIGHT / this.state.modelheight,
+                            borderTopRightRadius: 22,
+                            borderTopLeftRadius: 22,
+                        }}>
+
+                        { this.state.paymentbtn === true ? (
+                           <View style={{
+                               justifyContent: 'center',
+                               alignItems: 'center',
+                           }}>
+                               <ButtonCustomWithiconColor title={'Online Payment'}
+                                                          iconname={'credit-card-plus'}
+                                                          type={'material-community'}
+                                                          color1={'#ff8216'}
+                                                          color2={'#ff9500'}
+                                                          loading={this.state.loading}
+                                                          color3={'#ffbe00'}/>
+
+                               <ButtonCustomWithiconColor title={'Cash Payment'}
+                                                          onPre={() => this.CreateOrderCash()}
+                                                          iconname={'cash-100'}
+                                                          type={'material-community'}
+                                                          loading={this.state.loading}
+                                                          color1={'#3accff'}
+                                                          color2={'#69b1ff'}
+                                                          color3={'#87acff'}/>
+                           </View>
+                        ) : null
+                        }
+
+                        { this.state.offlinepayment === true ? (
+                           <View style={{
+                               flex:1,
+                               justifyContent: 'center',
+                               alignItems: 'center',
+                               padding:20
+                           }}>
+                               <View style={{
+                                   flex: 2.6,
+                                   alignItems: 'center',
+                                   justifyContent: 'center',
+                               }}>
+                               <QRCode
+                                   size={150}
+                                   value={this.props.User.uuid}
+                               />
+
+                               <TEXTNLBLACKD >Scan at Terminal</TEXTNLBLACKD>
+
+                               </View>
+
+                               <View style={{
+                                   flex: 1,
+                                   alignItems: 'center',
+                                   justifyContent: 'flex-end',
+                               }}>
+                                   <ActivityIndicator size="large" color={BLUESLIGHT} />
+
+
+                                   <ButtonCustomWithiconColor title={'Waiting for Payment'}
+                                                              iconname={'cash-100'}
+                                                              loading={this.state.loading}
+                                                              type={'material-community'}
+                                                              color1={'#3accff'}
+                                                              color2={'#69b1ff'}
+                                                              color3={'#87acff'}/>
+
+                               </View>
+
+
+                           </View>
+                        ) : null
+                        }
+
+                    </View>
+                </Modal>
+
                 <View
                     style={{
                         flex: 1,
@@ -163,7 +302,7 @@ export default class ConfirmPayment extends Component {
                         justifyContent: 'flex-end',
                     }}>
                     <ButtonCustom
-                        onPre={() => this.CreateOrder()}
+                        onPre={() => this.setState({model: true})}
                          loading={this.state.loading}
                         title={'Confirm Purchase'}
                     />
@@ -173,5 +312,16 @@ export default class ConfirmPayment extends Component {
     }
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+    modelContainer: {
+        backgroundColor: '#ffffff',
+        bottom:0,
+        height:200,
+        width:WIDTH-10,
+        //marginLeft:5,
+       // marginRight:5,
+        alignItems: 'center',
+        justifyContent: 'center',
+    }
+});
 

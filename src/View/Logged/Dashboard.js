@@ -47,10 +47,11 @@ export default class Dashboard extends Component {
  async componentDidMount(): void {
      let _Token = await  this.props.Auth.GetToken();
      let LiveClass = await this.props.User.getLiveClass(_Token);
-console.log('llii');
-     //console.log(LiveClass)
-      if (LiveClass !== false){
+
+
+      if (LiveClass !== 'false'){
           console.log(LiveClass);
+          console.log('llii');
           this.setState({
               liveclassdata: LiveClass[0],
               liveclass: true

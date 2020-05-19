@@ -1,0 +1,12 @@
+{
+    "appname" : "Emporium",
+    "verson_android" : "20",
+    "verson_android_text" : "new App Update available",
+    "verson_ios" : "4",
+    "verson_ios_text" : "new App Update available",
+    "playstore_url" : "https://play.google.com/store/apps/details?id=com.emporium",
+    "appstore_url" : "",
+    "cdn_url" : "https://cdn1.emporiummarketing.com",
+    "base_url" : "https://service.emporiummarketing.com",
+    "chaturl" : "https://tawk.to/chat/5e736ab4eec7650c33211eb5/default",
+}

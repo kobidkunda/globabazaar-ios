@@ -73,6 +73,7 @@ export default class User {
       this.address_proof = USER_PROFILE_DARTA.address_proof;
       this.is_premium = USER_PROFILE_DARTA.is_premium;
       this.id_proof = USER_PROFILE_DARTA.id_proof;
+      console.log(USER_PROFILE_DARTA)
       return true;
     } else {
       return false;

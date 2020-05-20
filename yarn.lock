@@ -5568,6 +5568,13 @@ react-native-modalbox@^1.7.1:
     create-react-class "^15.6.0"
     prop-types "^15.5.10"
 
+react-native-onesignal@^3.7.3:
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.7.3.tgz#95b65ba6b612126127d878382c5a263265faea62"
+  integrity sha512-zBrf6uXQG6D2VSatZ8cxSmvW5YcSNU5eiGL3qdhjp/0BHFXC/ZFN7pdZ3lcgM2Q/ddb9Vtb7+DrycRk1UnRBdQ==
+  dependencies:
+    invariant "^2.2.2"
+
 react-native-qrcode-svg@^6.0.6:
   version "6.0.6"
   resolved "https://registry.yarnpkg.com/react-native-qrcode-svg/-/react-native-qrcode-svg-6.0.6.tgz#bd4756cc0d76eeb3d162dca2f55eea80e3ebbe97"

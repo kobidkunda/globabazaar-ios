@@ -5,7 +5,7 @@ import {
     Dimensions,
     StyleSheet,
     StatusBar,
-    ScrollView, ActivityIndicator,
+    ScrollView, ActivityIndicator, Alert,
 } from 'react-native';
 import {
     BLUEDARK,
@@ -61,17 +61,44 @@ export default class ConfirmPayment extends Component {
         };
     }
 
-    CreateOrder = async () => {
+    CreateOrderOnline = async () => {
        this.setState({
             loading: true
         });
         let _TOKEN =  await this.props.Auth.GetToken();
         let Create_order = await this.props.Payment.CreatePayment(_TOKEN);
         console.log(_TOKEN)
-        console.log(Create_order)
-        this.setState({
-            loading: false
-        });
+        console.log(Create_order);
+
+        if (Create_order.link.status === 'issued'){
+            this.setState({
+                loading: false,
+                model:false
+            });
+            this.props.navigation.navigate('WebPay',{
+                id : Create_order.link.id,
+                order_id : Create_order.link.order_id,
+                short_url : Create_order.link.short_url,
+                status : Create_order.link.status,
+            });
+
+        } else {
+            this.setState({
+                loading: false,
+
+            });
+            Alert.alert(
+                "Error Occurred",
+                "Check for your Data or your Internet Connection. If Problem exists contact Support",
+                [
+                    { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+            );
+        }
+
+
+
      // this.props.navigation.navigate('ConfirmPayment')
     }
 
@@ -86,7 +113,7 @@ export default class ConfirmPayment extends Component {
         });
 
         this.timer = setInterval(()=> this.Checkupdatesonofline(), 3000)
-
+        //this.props.navigation.navigate('WebPay')
 
         // this.props.navigation.navigate('ConfirmPayment')
     };
@@ -232,6 +259,7 @@ export default class ConfirmPayment extends Component {
                                                           iconname={'credit-card-plus'}
                                                           type={'material-community'}
                                                           color1={'#ff8216'}
+                                                          onPre={()  => this.CreateOrderOnline()}
                                                           color2={'#ff9500'}
                                                           loading={this.state.loading}
                                                           color3={'#ffbe00'}/>
@@ -240,7 +268,6 @@ export default class ConfirmPayment extends Component {
                                                           onPre={() => this.CreateOrderCash()}
                                                           iconname={'cash-100'}
                                                           type={'material-community'}
-                                                          loading={this.state.loading}
                                                           color1={'#3accff'}
                                                           color2={'#69b1ff'}
                                                           color3={'#87acff'}/>
@@ -303,7 +330,7 @@ export default class ConfirmPayment extends Component {
                     }}>
                     <ButtonCustom
                         onPre={() => this.setState({model: true})}
-                         loading={this.state.loading}
+
                         title={'Confirm Purchase'}
                     />
                 </View>

@@ -16,6 +16,8 @@ import InitatePayment from './Payment/InitatePayment';
 import ConfirmPayment from './Payment/ConfirmPayment';
 import DoccuUpload from './DoccumentUpload/DoccuUpload';
 import Youtube from './Logged/Component/Youtube';
+import OneSignal from 'react-native-onesignal';
+import WebPay from './Payment/Payments/WebPay';
 
 
 const Stack = createStackNavigator();
@@ -24,11 +26,38 @@ const Stack = createStackNavigator();
 export default class Route extends Component {
   constructor(props) {
     super(props);
+      OneSignal.init('5a214dde-c22d-4701-9716-10280440ccfe', {
+          kOSSettingsKeyAutoPrompt: false,
+      }); // set kOSSettingsKeyAutoPrompt to false prompting manually on iOS
 
-    this.state = {
-        model: [],
-    };
+      OneSignal.addEventListener('received', this.onReceived);
+      OneSignal.addEventListener('opened', this.onOpened);
+      OneSignal.addEventListener('ids', this.onIds);
   }
+
+    componentWillUnmount() {
+        OneSignal.removeEventListener('received', this.onReceived);
+        OneSignal.removeEventListener('opened', this.onOpened);
+        OneSignal.removeEventListener('ids', this.onIds);
+    }
+
+    onReceived = notification => {
+        console.log('Notification received: ', notification);
+    };
+
+    onOpened = openResult => {
+        console.log('Message: ', openResult.notification.payload.body);
+        console.log('Data: ', openResult.notification.payload.additionalData);
+        console.log('isActive: ', openResult.notification.isAppInFocus);
+        console.log('openResult: ', openResult);
+    };
+
+    onIds = async device => {
+        console.log('Device info: ', device);
+
+
+        //   this.Sendtoken(device).then(r => console.log('jjj'));
+    };
 
  async componentDidMount(): void {
      await SplashScreen.hide();
@@ -79,6 +108,7 @@ export default class Route extends Component {
                       <Stack.Screen options={InitatePayment.navigationOptions} name="InitatePayment" component={InitatePayment} />
                       <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
                       <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
+                      <Stack.Screen options={WebPay.navigationOptions} name="WebPay" component={WebPay} />
                   </Stack.Navigator>
               </NavigationContainer>
           );

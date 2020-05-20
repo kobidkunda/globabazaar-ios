@@ -42,7 +42,23 @@ export default class Login extends Component {
           let userdata = await this.props.User.getUserDetails(this.props.Auth.access_token);
           console.log(userdata);
           if (userdata === true){
-              this.props.Auth.logged =  true;
+             // this.props.Auth.logged =  true;
+
+              let Config =  await this.props.Auth.GetConfig();
+              let _TOKEN =  await this.props.Auth.GetToken();
+              if (await this.props.Auth.CheckOnline() === true &&
+                  _TOKEN !== null
+                  && await this.props.User.getUserDetails(_TOKEN)  === true){
+
+                  let checkroute = await this.props.User.CheckRoute();
+                  this.props.Auth.logged =  true;
+
+              } else {
+                  this.props.Auth.logged =  false;
+              }
+
+
+
               this.setState({
                   loading:false
               });

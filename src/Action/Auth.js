@@ -33,9 +33,11 @@ export default class Auth {
     });
 
     let CONF = await USER_PROFILE.json();
+    console.log(CONF.verson_android);
+    console.log(APP_VERSON);
     this.app_conf = CONF;
 
-    if (CONF.verson_android >= APP_VERSON) {
+    if (Number(CONF.verson_android) !== Number(APP_VERSON)) {
       this.update_modal = true;
     }
 

@@ -8,7 +8,7 @@ import {
     StatusBar,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    KeyboardAvoidingView, Image,
+    KeyboardAvoidingView, Image, Linking,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -18,7 +18,7 @@ import ButtonCustom from '../../Component/ButtonCustom';
 import ButtonOutline from '../../Component/ButtonOutline';
 import TextPrimary from '../../Component/TextPrimary';
 import LinearGradient from 'react-native-linear-gradient';
-import {TEXTLG, TEXTLLG, TEXTNLBLACK} from '../../Style/TextStyle';
+import {TEXTLG, TEXTLLG, TEXTNLBLACK, TEXTNLBLACKD} from '../../Style/TextStyle';
 import CardWithIcons from '../../Component/CardWithIcons';
 import {BLUEDARK, BLUESLIGHT, ORANGE} from '../../Config/theme';
 import Youtube from './Component/Youtube';
@@ -26,6 +26,8 @@ import DasboardTeacher from './Component/DasboardTeacher';
 import DasboardClass from './Component/DasboardClass';
 import {inject, observer} from 'mobx-react';
 import ButtonCustomDisabled from '../../Component/ButtonCustomDisabled';
+import Modal from 'react-native-modal';
+import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
 @inject('Auth','User')
@@ -180,6 +182,66 @@ export default class Dashboard extends Component {
               <DasboardClass/>
 
           </View>
+
+            <Modal
+                isVisible={this.props.Auth.update_modal}
+                animationIn={'slideInUp'}
+                useNativeDriver={true}
+                animationInTiming={700}
+                animationOutTiming={700}
+                backdropTransitionOutTiming={1000}
+                onSwipeComplete={() => this.props.Auth.update_modal = false}
+                swipeDirection="down"
+                style={{margin: 0}}
+                onBackButtonPress={() =>
+                    this.props.Auth.update_modal = false
+                }>
+                <View
+                    style={{
+                        position: 'absolute',
+                        flex:1,
+                        bottom: 0,
+                        width: WIDTH,
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        backgroundColor:'#ffffff',
+                        height: HEIGHT / 2.5,
+                        borderTopRightRadius: 22,
+                        borderTopLeftRadius: 22,
+                    }}>
+                    <View style={{
+                        flex:2,
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                    }}>
+                    <Image
+                        style={{
+                            width: 150,
+                            height: 150,
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                        }}
+                        source={require('../../Assets/Images/playstore.png')}/>
+                    <TEXTNLBLACKD>{this.props.Auth.app_conf.verson_android_text}</TEXTNLBLACKD>
+                    </View>
+                    <View style={{
+                        flex:1,
+                        alignItems: 'center',
+                        justifyContent: 'flex-end',
+                    }}>
+                        <ButtonCustomWithiconColor title={'Update Now'}
+                                                   onPre={() => Linking.openURL(this.props.Auth.app_conf.playstore_url)}
+                                                   iconname={'google-play'}
+                                                   type={'material-community'}
+                                                   color1={'#54B666'}
+                                                   color2={'#54B666'}
+                                                   color3={'#54B666'}
+                        />
+                    </View>
+
+                </View>
+
+            </Modal>
 
             <View
             style={{

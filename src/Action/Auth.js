@@ -1,13 +1,15 @@
-import {observable, computed, action} from 'mobx';
+import {action, observable} from 'mobx';
 import AsyncStorage from '@react-native-community/async-storage';
 import {
+  APP_CONFIG,
+  APP_VERSON,
   CLIENT_SECRET,
   CLIENT_SECRET_ID,
   LOGIN,
   REGISTER,
-  TOKEN,
 } from '../Config/URL';
 import NetInfo from '@react-native-community/netinfo';
+
 export default class Auth {
   @observable logged = null;
   @observable online = false;
@@ -15,7 +17,30 @@ export default class Auth {
   @observable expires_in = null;
   @observable refresh_token = null;
   @observable token_type = null;
+  @observable app_conf = null;
+  @observable update_modal = false;
 
+  @action GetConfig = async () => {
+    let USER_PROFILE = await fetch(APP_CONFIG, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: 0,
+      },
+    });
+
+    let CONF = await USER_PROFILE.json();
+    this.app_conf = CONF;
+
+    if (CONF.verson_android >= APP_VERSON) {
+      this.update_modal = true;
+    }
+
+    console.log(CONF);
+  };
   @action CheckLogin = async () => {};
   @action GetToken = async () => {
     const value = await AsyncStorage.getItem('@access_token');
@@ -54,12 +79,11 @@ export default class Auth {
         pin_code: values.pincode,
       }),
     });
-   // return await POST_REG.json();
+    // return await POST_REG.json();
     return {
       status: POST_REG,
-      data: POST_REG.json()
-    }
-
+      data: POST_REG.json(),
+    };
   };
 
   @action Login = async values => {

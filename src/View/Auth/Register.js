@@ -343,7 +343,7 @@ export default class Register extends Component {
                       onChangeText={handleChange('city')}
                       onBlur={() => setFieldTouched('city')}
                       autoCorrect={false}
-                      keyboardType={'email-address'}
+                      keyboardType={'default'}
                       textContentType={'city'}
                       status={
                         touched.city && errors.city ? 'danger' : 'primary'
@@ -369,7 +369,7 @@ export default class Register extends Component {
                       onChangeText={handleChange('state')}
                       onBlur={() => setFieldTouched('state')}
                       autoCorrect={false}
-                      keyboardType="phone-pad"
+                      keyboardType="default"
                       textContentType={'postalCode'}
                       status={
                         touched.state && errors.state ? 'danger' : 'primary'

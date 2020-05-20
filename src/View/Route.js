@@ -32,6 +32,7 @@ export default class Route extends Component {
 
  async componentDidMount(): void {
      await SplashScreen.hide();
+      let Config =  await this.props.Auth.GetConfig();
       let _TOKEN =  await this.props.Auth.GetToken();
       if (await this.props.Auth.CheckOnline() === true &&
           _TOKEN !== null

@@ -248,18 +248,20 @@ export default class DoccuUpload extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor:WHITE,
-                        margin:15
+                        margin:5,
+
                     }}>
                     <TouchableOpacity
                         onPress={() => this.UploadSelfile()}
                         style={{
                         alignItems: 'center',
                         justifyContent: 'center',
+                            padding:5
                     }}>
                     <LottieView
                         style={{
-                            height: 150,
-                            width: 150,
+                            height: 100,
+                            width: 100,
                         }}
                         loop={this.state.loop0}
                         ref={animation => {
@@ -277,7 +279,7 @@ export default class DoccuUpload extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor:WHITE,
-                        margin:15
+                        margin:5
                     }}>
                     <TouchableOpacity
                         onPress={() => this.UploadAddressProof()}
@@ -287,8 +289,8 @@ export default class DoccuUpload extends Component {
                     }}>
                     <LottieView
                         style={{
-                            height: 150,
-                            width: 150,
+                            height: 100,
+                            width: 100,
                         }}
                         loop={this.state.loop}
                         ref={animation => {
@@ -306,7 +308,7 @@ export default class DoccuUpload extends Component {
                         alignItems: 'center',
                         justifyContent: 'center',
                         backgroundColor:WHITE,
-                        margin:15
+                        margin:5
                     }}>
                     <TouchableOpacity
                         onPress={() => this.UploadIDProof()}
@@ -316,8 +318,8 @@ export default class DoccuUpload extends Component {
                     }}>
                         <LottieView
                             style={{
-                                height: 150,
-                                width: 150,
+                                height: 100,
+                                width: 100,
                             }}
                             loop={this.state.loopt}
                             ref={animation => {
@@ -331,7 +333,7 @@ export default class DoccuUpload extends Component {
 
                 <View
                     style={{
-                        flex: 1,
+                        flex: 1.3,
                         alignItems: 'center',
                         justifyContent: 'flex-end',
                     }}>

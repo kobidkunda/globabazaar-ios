@@ -109,7 +109,7 @@ export default class ConfirmPayment extends Component {
         this.setState({
             offlinepayment: true,
             paymentbtn: false,
-            modelheight : 2.5
+            modelheight :2
         });
 
         this.timer = setInterval(()=> this.Checkupdatesonofline(), 3000)
@@ -152,7 +152,7 @@ export default class ConfirmPayment extends Component {
                     start={{x: 0.0, y: 0.8}}
                     end={{x: 1.0, y: 1.0}}
                     style={{
-                        flex: 1,
+                        flex: 1.5,
                         backgroundColor: BLUESLIGHT,
                         margin: 5,
                         elevation: 5,
@@ -176,7 +176,7 @@ export default class ConfirmPayment extends Component {
                     start={{x: 0.0, y: 0.8}}
                     end={{x: 1.0, y: 1.0}}
                     style={{
-                        flex: 1.5,
+                        flex: 2.5,
                         backgroundColor: YELLOW,
                         margin: 5,
                         elevation: 5,
@@ -204,14 +204,14 @@ export default class ConfirmPayment extends Component {
 
                 <View
                     style={{
-                        flex: 4,
+                        flex: 3.5,
                         alignItems: 'center',
                         justifyContent: 'center',
                     }}>
                     <LottieView
                         style={{
-                            height: 350,
-                            width: 359,
+                            height: 250,
+                            width: 259,
                         }}
                         loop={false}
                         ref={animation => {

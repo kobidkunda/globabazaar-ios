@@ -18,7 +18,7 @@ export const TEXTLLlG = styled.Text`
 `;
 
 export const TEXTLLGWHITE = styled.Text`
-  font-size: 18px
+  font-size: 12px
   font-family: 'MontserratBold'
   text-transform: uppercase
   color: ${WHITE}

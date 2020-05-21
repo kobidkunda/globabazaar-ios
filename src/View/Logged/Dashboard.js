@@ -169,7 +169,7 @@ export default class Dashboard extends Component {
 
           <View
             style={{
-              flex: 2.5,
+              flex: 2,
               paddingTop: 50,
             }}>
 
@@ -245,7 +245,7 @@ export default class Dashboard extends Component {
 
             <View
             style={{
-              flex: 0.5,
+              flex: 1,
               paddingTop: 20,
             }}>
                 {this.state.liveclass === true? (

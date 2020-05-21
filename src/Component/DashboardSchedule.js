@@ -32,7 +32,7 @@ const DashboardSchedule = props => (
           flex: 3,
           elevation: 30,
           backgroundColor: BLUEDARK,
-          height: 80,
+          height: 60,
           borderTopRightRadius: 40,
           borderBottomRightRadius: 40,
         }}>
@@ -63,7 +63,7 @@ const DashboardSchedule = props => (
             }}>
             <Icon
               name={'video-account'}
-              size={55}
+              size={40}
               color={'rgba(255,255,255,0.12)'}
             />
           </View>
@@ -74,7 +74,8 @@ const DashboardSchedule = props => (
         style={{
           flex: 1,
           // backgroundColor:BLUEDARK,
-          height: 80,
+          height: 40,
+            width:100
         }}>
         <Avatar
           overlayContainerStyle={styles.overlayContainerStyle}
@@ -82,7 +83,7 @@ const DashboardSchedule = props => (
           containerStyle={styles.containerStyle}
           //avatarStyle={styles.containerStyle}
           //  placeholderStyle={styles.containerStyle}
-          size={70}
+          size={60}
           source={{
             uri: props.url,
           }}
@@ -96,7 +97,8 @@ const styles = StyleSheet.create({
   containerStyle: {
     justifyContent: 'center',
     paddingLeft: 6,
-    marginTop: 0,
+      marginLeft:10,
+    marginTop: -5,
     elevation: 30,
   },
   overlayContainerStyle: {

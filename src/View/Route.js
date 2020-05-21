@@ -18,6 +18,9 @@ import DoccuUpload from './DoccumentUpload/DoccuUpload';
 import Youtube from './Logged/Component/Youtube';
 import OneSignal from 'react-native-onesignal';
 import WebPay from './Payment/Payments/WebPay';
+import UpcomingClass from './Logged/UpcomingClass';
+import UpcomingClassDetails from './Logged/UpcomingClassDetails';
+import NotificationPage from './Logged/NotificationPage';
 
 
 const Stack = createStackNavigator();
@@ -55,6 +58,8 @@ export default class Route extends Component {
     onIds = async device => {
         console.log('Device info: ', device);
 
+        this.props.User.device_uuid = device.userId
+
 
         //   this.Sendtoken(device).then(r => console.log('jjj'));
     };
@@ -85,6 +90,9 @@ export default class Route extends Component {
                   <Stack.Navigator>
                       <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
                       <Stack.Screen options={Youtube.navigationOptions}  name="Youtube" component={Youtube} />
+                      <Stack.Screen options={NotificationPage.navigationOptions}  name="NotificationPage" component={NotificationPage} />
+                      <Stack.Screen options={UpcomingClass.navigationOptions}  name="UpcomingClass" component={UpcomingClass} />
+                      <Stack.Screen  options={{headerShown: false}}  name="UpcomingClassDetails" component={UpcomingClassDetails} />
                       <Stack.Screen   name="Profile" component={Profile} />
                   </Stack.Navigator>
               </NavigationContainer>
@@ -124,11 +132,7 @@ export default class Route extends Component {
           );
       } else {
           return (
-              <NavigationContainer>
-                  <Stack.Navigator>
-                      <Stack.Screen options={{headerShown: false}}  name="Splash" component={Splash} />
-                  </Stack.Navigator>
-              </NavigationContainer>
+              <Splash syncMessage={this.props.syncMessage}/>
           );
       }
 

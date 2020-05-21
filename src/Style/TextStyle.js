@@ -28,6 +28,18 @@ export const TEXTLLGWHITEP = styled.Text`
   font-size: 15px
   font-family: 'MontserratBold'
   text-transform: uppercase
+  color: ${WHITE}`;
+
+export const TEXTLLGWHITEVVGV = styled.Text`
+  font-size: 21px
+  font-family: 'MontserratBlack'
+  text-transform: uppercase
+  color: ${WHITE}`;
+
+export const TEXTLLGWHITEVV = styled.Text`
+  font-size: 15px
+  font-family: 'MontserratBold'
+  text-transform: uppercase
   color: ${WHITE}
 `;
 export const TEXTSMWHITE = styled.Text`

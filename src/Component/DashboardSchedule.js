@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {
   BLUEDARK,
   BLUESLIGHT,
@@ -11,6 +11,7 @@ import {Avatar, Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 import {TEXTDESCWHITE, TEXTLLGWHITE, TEXTSMWHITE} from '../Style/TextStyle';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import CardWithIcons from './CardWithIcons';
 
 const DashboardSchedule = props => (
   <View
@@ -36,8 +37,10 @@ const DashboardSchedule = props => (
           borderTopRightRadius: 40,
           borderBottomRightRadius: 40,
         }}>
-        <View
-          style={{
+        <TouchableOpacity
+            onPress={props.onPress}
+
+            style={{
             flex: 1,
             flexDirection: 'row',
           }}>
@@ -67,7 +70,7 @@ const DashboardSchedule = props => (
               color={'rgba(255,255,255,0.12)'}
             />
           </View>
-        </View>
+        </TouchableOpacity>
       </LinearGradient>
 
       <View

@@ -104,8 +104,9 @@ export default class Auth {
         provider: 'users',
       }),
     });
-
     let LoginData = await POST_ORDER.json();
+    console.log(LoginData.access_token)
+
     if (POST_ORDER.status === 200) {
       await AsyncStorage.setItem('@token_type', LoginData.token_type);
       await AsyncStorage.setItem('@access_token', LoginData.access_token);

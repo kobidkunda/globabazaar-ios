@@ -25,8 +25,8 @@ export default class DasboardClass extends Component {
 
 async  componentDidMount(): void {
     let _Token = await  this.props.Auth.GetToken();
-    let Teacherlist = await  this.props.Class.upcomingClass(await _Token);
-    console.log(Teacherlist);
+    let Teacherlist = await  this.props.Class.upcomingClass( _Token,this.props.count);
+    console.log(this.props.navigation);
 
     this.setState({
       class: Teacherlist,
@@ -40,6 +40,10 @@ async  componentDidMount(): void {
       return(
           <Row>
             <DashboardSchedule
+
+                onPress={() => this.props.navigation.navigate('UpcomingClassDetails',{
+                    id: item.id
+                })}
                 teacher={item.seminar_to_teacher.name}
                 url={BASE_URL+ item.seminar_to_teacher.image}
                 title={item.title}

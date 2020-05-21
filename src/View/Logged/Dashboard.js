@@ -28,6 +28,7 @@ import {inject, observer} from 'mobx-react';
 import ButtonCustomDisabled from '../../Component/ButtonCustomDisabled';
 import Modal from 'react-native-modal';
 import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
+import DashboardSchedule from '../../Component/DashboardSchedule';
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
 @inject('Auth','User')
@@ -121,7 +122,8 @@ export default class Dashboard extends Component {
                   paddingRight: 10,
                 }}>
                 <CardWithIcons
-                  bgcolor={BLUEDARK}
+                    onPress={() => this.props.navigation.navigate('UpcomingClass')}
+                    bgcolor={BLUEDARK}
                   text={'Schedule'}
                   iconname={'television'}
                 />
@@ -145,7 +147,8 @@ export default class Dashboard extends Component {
                   paddingRight: 10,
                 }}>
                 <CardWithIcons
-                  bgcolor={ORANGE}
+                    onPress={() => this.props.navigation.navigate('NotificationPage')}
+                    bgcolor={ORANGE}
                   text={'Alerts'}
                   iconname={'bell'}
                 />
@@ -179,7 +182,7 @@ export default class Dashboard extends Component {
               }}>
                   <TEXTNLBLACK>Upcoming Classes</TEXTNLBLACK>
               </View>
-              <DasboardClass/>
+              <DasboardClass  navigation={this.props.navigation} count={3}/>
 
           </View>
 

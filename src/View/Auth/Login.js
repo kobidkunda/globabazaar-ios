@@ -32,12 +32,18 @@ export default class Login extends Component {
             loading: false,
         };
     }
-  OnLogin = async (values) => {
+
+    componentDidMount(): void {
+        console.log(this.props.User.device_uuid)
+    }
+
+    OnLogin = async (values) => {
       this.setState({
           loading:true
       });
 
       if (await this.props.Auth.CheckOnline() === true && await this.props.Auth.Login(values) === true){
+
 
           let userdata = await this.props.User.getUserDetails(this.props.Auth.access_token);
           console.log(userdata);
@@ -50,7 +56,9 @@ export default class Login extends Component {
                   _TOKEN !== null
                   && await this.props.User.getUserDetails(_TOKEN)  === true){
 
+                  let posttoken = await this.props.User.ADD_NOTIFY_DEVICES(_TOKEN,this.props.User.device_uuid);
                   let checkroute = await this.props.User.CheckRoute();
+                //  console.log(posttoken)
                   this.props.Auth.logged =  true;
 
               } else {

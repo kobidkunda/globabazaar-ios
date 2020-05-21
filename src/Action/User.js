@@ -1,5 +1,10 @@
 import {action, observable} from 'mobx';
-import {GET_LIVE_CLASS, PROFILE} from '../Config/URL';
+import {
+  ADD_NOTIFY_LIST,
+  GET_LIVE_CLASS,
+  GET_NOTIFY_LIST,
+  PROFILE,
+} from '../Config/URL';
 
 export default class User {
   @observable avatar = null;
@@ -21,6 +26,7 @@ export default class User {
   @observable state = null;
   @observable route = 1;
   @observable liveclass = null;
+  @observable device_uuid = null;
 
   @action getLiveClass = async access_token => {
     let USER_PROFILE = await fetch(GET_LIVE_CLASS, {
@@ -38,6 +44,24 @@ export default class User {
     let USER_PROFILE_DARTA = await USER_PROFILE.json();
 
     return USER_PROFILE_DARTA.live_videos;
+  };
+
+  @action GET_ALL_NOTIFICATION = async access_token => {
+    let USER_PROFILE = await fetch(GET_NOTIFY_LIST, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: 0,
+      },
+    });
+
+    let USER_PROFILE_DARTA = await USER_PROFILE.json();
+
+    return USER_PROFILE_DARTA;
   };
 
   @action getUserDetails = async access_token => {
@@ -73,13 +97,12 @@ export default class User {
       this.address_proof = USER_PROFILE_DARTA.address_proof;
       this.is_premium = USER_PROFILE_DARTA.is_premium;
       this.id_proof = USER_PROFILE_DARTA.id_proof;
-      console.log(USER_PROFILE_DARTA)
+      console.log(USER_PROFILE_DARTA);
       return true;
     } else {
       return false;
     }
   };
-
 
   @action getUserDetailsRecheck = async access_token => {
     let USER_PROFILE = await fetch(PROFILE, {
@@ -139,11 +162,33 @@ export default class User {
     } else {
       this.route = 1;
     }
-
-
   };
 
-  @action UploadImages = async () => {};
+  @action ADD_NOTIFY_DEVICES = async (access_token, uuid) => {
+    console.log(uuid);
+    let USER_PROFILE = await fetch(ADD_NOTIFY_LIST, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + access_token,
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        Pragma: 'no-cache',
+        Expires: 0,
+      },
+      body: JSON.stringify({
+        device_uuid: uuid,
+      }),
+    });
+
+    let NitifyStatus = await USER_PROFILE.json().status;
+    let Nitify = await USER_PROFILE.json().notification;
+
+    return {
+      status: NitifyStatus,
+      data: Nitify,
+    };
+  };
 
   @action UpdateProfile = async () => {};
 }

@@ -41,6 +41,8 @@ export default class Profile extends Component {
         <ProfileItem title={'Last Name'} value={this.props.User.lname} />
         <ProfileItem title={'Email'} value={this.props.User.email} />
         <ProfileItem title={'Signature'} value={this.props.User.uuid} />
+        <ProfileItem title={'Signature'} value={this.props.User.uuid} />
+        <ProfileItem title={'Signature'} value={this.props.User.uuid} />
         <ProfileItem title={'Phone'} value={this.props.User.phone} />
         <ProfileItem title={'Street'} value={this.props.User.street} />
         <ProfileItem title={'City'} value={this.props.User.city} />

@@ -181,6 +181,8 @@ dexOptions {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
                         signingConfig signingConfigs.release
+            resValue "string", "CodePushDeploymentKey", '"P001xW8t1DJZui-tHM4g9jL0c5r03kNC_iIbo"'
+
 
         }
     }

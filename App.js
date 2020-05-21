@@ -8,6 +8,7 @@
 
 import React from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
+import codePush from 'react-native-code-push';
 
 import Route from './src/View/Route';
 import stores from './src/Action/Index';
@@ -19,10 +20,14 @@ const App: () => React$Node = () => {
       <Provider {...stores}>
         <StatusBar barStyle="light-content" />
 
-          <Route />
-
+        <Route />
       </Provider>
     </>
   );
 };
-export default App;
+
+const codePushOptions = {
+  checkFrequency: codePush.CheckFrequency.ON_APP_START,
+};
+
+export default codePush(codePushOptions)(App);

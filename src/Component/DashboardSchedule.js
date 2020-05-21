@@ -33,7 +33,7 @@ const DashboardSchedule = props => (
           flex: 3,
           elevation: 30,
           backgroundColor: BLUEDARK,
-          height: 60,
+          height: 70,
           borderTopRightRadius: 40,
           borderBottomRightRadius: 40,
         }}>

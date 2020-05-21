@@ -22,6 +22,7 @@ import RNCalendarEvents from 'react-native-calendar-events';
 import {inject, observer} from 'mobx-react';
 import ButtonCustom from '../../Component/ButtonCustom';
 import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
+import {BASE_URL} from '../../Config/URL';
 @inject('Auth','User','Class')
 @observer
 export default class UpcomingClassDetails extends Component {
@@ -51,6 +52,7 @@ export default class UpcomingClassDetails extends Component {
 
    let classDetails = await this.props.Class.upcomingClassDETAILS(_Token,this.props.route.params.id);
    console.log(classDetails.seminars.seminar_to_teacher.name);
+
    this.setState({
      data:classDetails.seminars,
      teacher:classDetails.seminars.seminar_to_teacher
@@ -123,7 +125,7 @@ export default class UpcomingClassDetails extends Component {
 
             source={
               this.state.data.image === null ? (
-                  require('../../Assets/Images/rlk.jpg')) : ({uri: this.state.data.image})
+                  require('../../Assets/Images/rlk.jpg')) : ({uri: BASE_URL + this.state.data.image})
 
             }>
             <View

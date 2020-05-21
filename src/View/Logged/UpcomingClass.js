@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import {Text, View, Dimensions, StyleSheet} from 'react-native';
+import {Text, View, Dimensions, StyleSheet, ScrollView} from 'react-native';
 import DasboardClass from './Component/DasboardClass';
 import {BLUEDARK} from '../../Config/theme';
-import DashboardSchedule from '../../Component/DashboardSchedule';
+import ClassListComp from './Component/ClassListComp';
 
 export default class UpcomingClass extends Component {
   static navigationOptions = {
@@ -27,8 +27,11 @@ export default class UpcomingClass extends Component {
 
   render() {
     return (
-      <View>
-        <DasboardClass  navigation={this.props.navigation} count={12} />
+      <View style={{
+        flex:1,
+
+      }}>
+        <ClassListComp navigation={this.props.navigation} count={22} />
       </View>
     );
   }

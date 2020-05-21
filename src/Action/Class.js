@@ -5,6 +5,8 @@ export default class Class {
   @action upcomingClass = async (access_token, count) => {
     //    ]UPCOMING_CLASS
 
+    console.log(UPCOMING_CLASS + count);
+
     let USER_PROFILE = await fetch(UPCOMING_CLASS + count, {
       method: 'GET',
       headers: {

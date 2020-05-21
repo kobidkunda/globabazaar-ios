@@ -1,6 +1,6 @@
 import YouTube from 'react-native-youtube';
 import React, {Component} from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, ScrollView} from 'react-native';
 
 import {Row, Grid, Col} from 'react-native-easy-grid';
 import DashboardSchedule from '../../../Component/DashboardSchedule';
@@ -11,7 +11,7 @@ import CircleLoader from '../../../Component/Loader/CircleLoader';
 import ClassLoader from '../../../Component/Loader/ClassLoader';
 @inject('Auth','User','Class')
 @observer
-export default class DasboardClass extends Component {
+export default class ClassListComp extends Component {
   constructor(props) {
     super(props);
 
@@ -62,9 +62,7 @@ async  componentDidMount(): void {
 
   render() {
     return (
-      <Grid style={{
-          justifyContent: 'flex-start',
-          alignItems: 'center',
+      <ScrollView style={{
       }}>
 
           {this.state.loading === true? (
@@ -92,7 +90,7 @@ async  componentDidMount(): void {
                       { this.renderButtons(this.state.class)}
                   </Grid>
               )}
-      </Grid>
+      </ScrollView>
     );
   }
 }

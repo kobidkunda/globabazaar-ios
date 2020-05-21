@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, Dimensions, StyleSheet} from 'react-native';
 import {ListItem} from 'react-native-elements';
-import {BLUEDARK} from '../../Config/theme';
+import {BLUEDARK, BLUESLIGHT} from '../../Config/theme';
 import {inject, observer} from 'mobx-react';
 
 
@@ -11,7 +11,7 @@ export default class NotificationPage extends Component {
   static navigationOptions = {
     title: 'Notification',
     headerStyle: {
-      backgroundColor: BLUEDARK,
+      backgroundColor: BLUESLIGHT,
     },
     headerTintColor: '#ffffff',
     headerTitleStyle: {
@@ -43,7 +43,9 @@ export default class NotificationPage extends Component {
 
 
     return (
-      <View>
+      <View style={{
+          backgroundColor:'#dadada'
+      }}>
         {this.state.notification.map((l, i) => (
           <ListItem
             key={i}

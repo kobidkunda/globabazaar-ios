@@ -9,7 +9,7 @@ import {
   Image, Linking, Alert,
 } from 'react-native';
 import DasboardClass from './Component/DasboardClass';
-import {BLUEDARK, HEIGHT, WHITE, WIDTH} from '../../Config/theme';
+import {BLUEDARK, BLUESLIGHT, HEIGHT, WHITE, WIDTH} from '../../Config/theme';
 import {
   TEXTLLGWHITEP,
   TEXTLLGWHITEVV,
@@ -29,7 +29,7 @@ export default class UpcomingClassDetails extends Component {
   static navigationOptions = {
     title: 'UpcomingClass',
     headerStyle: {
-      backgroundColor: BLUEDARK,
+      backgroundColor: BLUESLIGHT,
     },
     headerTintColor: '#ffffff',
     headerTitleStyle: {
@@ -63,38 +63,53 @@ export default class UpcomingClassDetails extends Component {
 
     this.setState({
       loading: true
-    })
-   // let kkk =  await  RNCalendarEvents.authorizationStatus();
-    let kkk =  await  RNCalendarEvents.authorizeEventStore();
-    console.log(kkk);
+    });
 
-    if (kkk === 'authorized' ){
-       await RNCalendarEvents.saveEvent(this.state.data.title+ ' by '+ this.state.teacher.name, {
-        startDate: this.state.data.date+'T09:26:00.000Z',
-        endDate: this.state.data.date+'T09:26:00.000Z'
-      });
+    let Permissionstatus = await RNCalendarEvents.authorizationStatus();
+       // let kkk =  await  RNCalendarEvents.authorizationStatus();
+   // let kkk =  await  RNCalendarEvents.authorizeEventStore();
+    console.log(Permissionstatus);
+
+       this.setState({
+           loading: false
+       })
+
+    if (Permissionstatus === 'authorized' ){
+       await RNCalendarEvents.saveEvent(
+           this.state.data.title+ ' by '+ this.state.teacher.name, {
+        startDate: this.state.data.date+'T19:26:00.000Z',
+        endDate: this.state.data.date+'T19:26:00.000Z',
+           notes: this.state.data.title+ ' by '+ this.state.teacher.name,
+           alarms: [{
+               date: this.state.data.date+'T19:26:00.000Z'
+           }]
+       });
+
       Alert.alert(
-          "Remainder Successful",
-          " We will remind you about the live Class",
+          "Remainder set on "+ this.state.data.date,
+          " We will remind you about the live class on "+ this.state.data.date,
           [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
+            { text: "Got It", onPress: () => console.log("OK Pressed") }
           ],
           { cancelable: false }
       );
     } else {
-      Alert.alert(
-          "Remainder Successful",
-          "You denied Calender permission We cannot remind you. Please try again",
-          [
-            { text: "OK", onPress: () => console.log("OK Pressed") }
-          ],
-          { cancelable: false }
-      );
+        await  RNCalendarEvents.authorizeEventStore();
+        await RNCalendarEvents.saveEvent(this.state.data.title+ ' by '+ this.state.teacher.name, {
+            startDate: this.state.data.date+'T19:26:00.000Z',
+            endDate: this.state.data.date+'T19:26:00.000Z'
+        });
+        Alert.alert(
+            "Remainder set on "+ this.state.data.date,
+            " We will remind you about the live class on "+ this.state.data.date,
+            [
+                { text: "Got It", onPress: () => console.log("OK Pressed") }
+            ],
+            { cancelable: false }
+        )
     }
 
-     this.setState({
-       loading: false
-     })
+
 }
 
   render() {
@@ -201,22 +216,30 @@ export default class UpcomingClassDetails extends Component {
           }}>
           <View
             style={{
-              padding: 20,
+              paddingLeft: 20,
+                paddingTop:20
             }}>
             <TEXTNLBLACKD>Description</TEXTNLBLACKD>
             <Text>
               {this.state.data.lecture}
             </Text>
           </View>
-          <ButtonCustomWithiconColor title={'Remind Me'}
-                                     loading={this.state.loading}
-                                     onPre={() => this.addevent()}
-                                     iconname={'calendar'}
-                                     type={'material-community'}
-                                     color1={'#54B666'}
-                                     color2={'#54B666'}
-                                     color3={'#54B666'}
-          />
+            <View style={{
+                alignItems: 'center',
+                justifyContent: 'center',
+                width:WIDTH-10
+            }}>
+                <ButtonCustomWithiconColor title={'Remind Me'}
+                                           loading={this.state.loading}
+                                           onPre={() => this.addevent()}
+                                           iconname={'calendar'}
+                                           type={'material-community'}
+                                           color1={'#54B666'}
+                                           color2={'#54B666'}
+                                           color3={'#54B666'}
+                />
+            </View>
+
         </View>
       </View>
     );

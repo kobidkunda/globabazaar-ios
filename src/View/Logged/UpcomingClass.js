@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import {Text, View, Dimensions, StyleSheet, ScrollView} from 'react-native';
 import DasboardClass from './Component/DasboardClass';
-import {BLUEDARK} from '../../Config/theme';
+import {BLUEDARK, BLUESLIGHT} from '../../Config/theme';
 import ClassListComp from './Component/ClassListComp';
 
 export default class UpcomingClass extends Component {
   static navigationOptions = {
     title: 'UpcomingClass',
     headerStyle: {
-      backgroundColor: BLUEDARK,
+      backgroundColor: BLUESLIGHT,
     },
     headerTintColor: '#ffffff',
     headerTitleStyle: {

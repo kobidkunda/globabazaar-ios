@@ -62,7 +62,7 @@ export default class Auth {
     this.logged = false;
   };
 
-  @action Register = async values => {
+  @action Register = async (values,lang) => {
     let POST_REG = await fetch(REGISTER, {
       method: 'POST',
       headers: {
@@ -79,6 +79,7 @@ export default class Auth {
         city: values.city,
         state: values.state,
         pin_code: values.pincode,
+        preferred_language: lang,
       }),
     });
     // return await POST_REG.json();
@@ -88,7 +89,7 @@ export default class Auth {
     };
   };
 
-  @action Login = async values => {
+  @action Login = async (values) => {
     let POST_ORDER = await fetch(LOGIN, {
       method: 'POST',
       headers: {

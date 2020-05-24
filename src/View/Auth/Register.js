@@ -7,13 +7,16 @@ import {
     Image,
     TouchableOpacity,
     KeyboardAvoidingView,
-    ScrollView, Alert,
+    ScrollView, Alert,Text
 } from 'react-native';
 import * as yup from 'yup';
 import {Formik} from 'formik';
 import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
 import {inject, observer} from 'mobx-react';
+import {TEXTLLGWHITEVV, TEXTNLBLACKD} from '../../Style/TextStyle';
+import {ButtonGroup} from 'react-native-elements';
+import {BLUEDARK, WHITE, YELLOW} from '../../Config/theme';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
@@ -25,14 +28,43 @@ export default class Register extends Component {
 
         this.state = {
             loading: false,
+            langselect: 0,
+            lang: 'in_hi'
+
         };
+
+        this.updateIndex = this.updateIndex.bind(this)
+
     }
-  OnLogin = async values => {
+
+    updateIndex (langselect) {
+        this.setState({langselect});
+        if (langselect === 0 ){
+            this.setState({
+                lang: 'in_hi'
+            })
+        } else if (langselect === 1 ){
+            this.setState({
+                lang: 'ne'
+            })
+        }
+        else {
+            this.setState({
+                lang: 'in_hi'
+            })
+        }
+        console.log(langselect)
+    }
+
+
+
+
+  OnLogin = async (values,lang) => {
         this.setState({
             loading:true
         })
     console.log(values);
-    let POST_DATA = await this.props.Auth.Register(values);
+    let POST_DATA = await this.props.Auth.Register(values,lang);
 
     if (POST_DATA.status.status === 200){
         Alert.alert(
@@ -76,6 +108,10 @@ export default class Register extends Component {
   };
 
   render() {
+      const component1 = () => <TEXTNLBLACKD>Hindi</TEXTNLBLACKD>
+      const component2 = () => <TEXTNLBLACKD>Nepali</TEXTNLBLACKD>
+      const buttons = [{ element: component1 }, { element: component2 }]
+      const { langselect } = this.state
     return (
       <ImageBackground
         style={{
@@ -140,7 +176,7 @@ export default class Register extends Component {
                   pincode: '',
                   password: '',
                 }}
-                onSubmit={values => this.OnLogin(values)}
+                onSubmit={values => this.OnLogin(values,this.state.lang)}
                 validationSchema={yup.object().shape({
                   fname: yup
                     .string()
@@ -404,6 +440,27 @@ export default class Register extends Component {
                         touched.pincode && errors.pincode ? errors.pincode : ''
                       }
                     />
+
+                      <View style={{
+                          padding:10
+                      }}>
+                          <TEXTLLGWHITEVV>Prefered Language of Video</TEXTLLGWHITEVV>
+                      </View>
+                      <ButtonGroup
+                          selectedButtonStyle={{
+                              backgroundColor:YELLOW,
+                              elevation:20
+                          }}
+                          underlayColor={BLUEDARK}
+                          containerStyle={{
+                              marginBottom:20
+                          }}
+                          onPress={this.updateIndex}
+                          selectedIndex={langselect}
+                          buttons={buttons}
+
+                      />
+
 
                     <InputCustom
                       InputRef={input => {

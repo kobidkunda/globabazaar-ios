@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
-import {Formik} from 'formik';
+import * as RNLocalize from "react-native-localize";
+
 import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
 import ButtonOutline from '../../Component/ButtonOutline';
@@ -50,7 +51,8 @@ export default class Dashboard extends Component {
  async componentDidMount(): void {
      let _Token = await  this.props.Auth.GetToken();
      let LiveClass = await this.props.User.getLiveClass(_Token);
-
+     console.log(RNLocalize.getLocales());
+     console.log(RNLocalize.getCurrencies());
 
       if (LiveClass !== 'false'){
           console.log(LiveClass);

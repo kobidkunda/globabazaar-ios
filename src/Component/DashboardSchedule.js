@@ -51,8 +51,8 @@ const DashboardSchedule = props => (
               // alignItems: 'center',
               paddingLeft: 10,
             }}>
-            <TEXTLLGWHITE>{props.teacher}</TEXTLLGWHITE>
-            <TEXTDESCWHITE>{props.title}</TEXTDESCWHITE>
+            <TEXTLLGWHITE>{props.teacher.substring(0, 12)}</TEXTLLGWHITE>
+            <TEXTDESCWHITE>{props.title.substring(0, 12)}</TEXTDESCWHITE>
             <TEXTSMWHITE>
               {props.date} {props.time}
             </TEXTSMWHITE>

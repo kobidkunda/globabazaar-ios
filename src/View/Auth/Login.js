@@ -8,7 +8,7 @@ import {
     Image,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    KeyboardAvoidingView, StatusBar,
+    KeyboardAvoidingView, StatusBar, ActivityIndicator,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -19,6 +19,12 @@ import ButtonOutline from '../../Component/ButtonOutline';
 import TextPrimary from '../../Component/TextPrimary';
 import {inject, observer} from 'mobx-react';
 import ButtonText from '../../Component/ButtonText';
+import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
+import QRCode from 'react-native-qrcode-svg';
+import {TEXTLLGWHITE, TEXTNLBLACKD} from '../../Style/TextStyle';
+import {BLUESLIGHT, WHITE} from '../../Config/theme';
+import Modal from 'react-native-modal';
+import {Icon} from 'react-native-elements';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
@@ -75,14 +81,14 @@ export default class Login extends Component {
       } else {
           Alert.alert(
               "Invalid Login",
-              "Check for your Username & password or your Internet Connection",
+              this.props.Auth.langfile.words.cfyupic,
               [
                   {
-                      text: "Register a Account",
+                      text: this.props.Auth.langfile.words.raa,
                       onPress: () => this.props.navigation.navigate('Register'),
                       style: "cancel"
                   },
-                  { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                  { text: this.props.Auth.langfile.words.ta, onPress: () => console.log("OK Pressed") }
               ],
               { cancelable: false }
           );
@@ -117,6 +123,20 @@ export default class Login extends Component {
                 translucent={true}
                 backgroundColor={'rgba(255,255,255,0.0)'}
             />
+            <TouchableOpacity
+                onPress={() => this.props.Auth.langpopup = true}
+                style={{
+                position:'absolute',
+                padding:5,
+                marginTop:30,
+                right:10,
+                borderColor:WHITE,
+                borderWidth:1,
+                borderRadius:7
+            }}>
+                <Icon name={'language'} type={'entypo'} color={WHITE}/>
+                <TEXTLLGWHITE> Language</TEXTLLGWHITE>
+            </TouchableOpacity>
           <View
             size={50}
             style={{
@@ -188,7 +208,7 @@ export default class Login extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'account-arrow-right'}
-                      placeholder="Username"
+                      placeholder={this.props.Auth.langfile.words.un}
                       onChangeText={handleChange('username')}
                       onBlur={() => setFieldTouched('username')}
                       autoCorrect={false}
@@ -217,7 +237,7 @@ export default class Login extends Component {
                       keyboardType={'default'}
                       onChangeText={handleChange('password')}
                       onBlur={() => setFieldTouched('password')}
-                      placeholder={'Password'}
+                      placeholder={this.props.Auth.langfile.words.pw}
                       leftIcon={'onepassword'}
                       returnKeyType={'go'}
                       autoCorrect={false}
@@ -241,7 +261,7 @@ export default class Login extends Component {
 
                   <View>
                     <ButtonCustom
-                      title={'Login'}
+                      title={this.props.Auth.langfile.words.login}
                       loading={this.state.loading}
                       onPre={handleSubmit}
                     />
@@ -256,10 +276,78 @@ export default class Login extends Component {
               style={{
                 flex: 1,
               }}>
-              <TextPrimary value={'Dont have an account ?'} />
-              <ButtonOutline onPress={() => this.props.navigation.navigate('Register')} title={'Register'} />
-                <ButtonText onPress={() => this.props.navigation.navigate('ForgotPassword')} title={'Forgot Password'}/>
+              <TextPrimary value={this.props.Auth.langfile.words.dhaa} />
+              <ButtonOutline onPress={() => this.props.navigation.navigate('Register')} title={this.props.Auth.langfile.words.rgd} />
+                <ButtonText onPress={() => this.props.navigation.navigate('ForgotPassword')} title={this.props.Auth.langfile.words.fp}/>
             </View>
+
+
+
+              <Modal
+                  isVisible={this.props.Auth.langpopup}
+                  animationIn={'slideInUp'}
+                  useNativeDriver={true}
+                  animationInTiming={700}
+                  animationOutTiming={700}
+                  backdropTransitionOutTiming={1000}
+                  onSwipeComplete={() => this.props.Auth.langpopup = false}
+                  swipeDirection="down"
+                  style={{margin: 0}}
+                  onBackButtonPress={() =>
+                      this.props.Auth.langpopup = false
+                  }>
+                  <View
+                      style={{
+                          position: 'absolute',
+                          flex:1,
+                          bottom: 0,
+                          width: WIDTH,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                          backgroundColor:'#ffffff',
+                          height: HEIGHT / 3,
+                          borderTopRightRadius: 22,
+                          borderTopLeftRadius: 22,
+                      }}>
+                          <View style={{
+                              justifyContent: 'center',
+                              alignItems: 'center',
+                          }}>
+                              <TEXTNLBLACKD>Select Language</TEXTNLBLACKD>
+                              <ButtonCustomWithiconColor title={'English'}
+                                                         iconname={'language'}
+                                                         type={'entypo'}
+                                                         color1={'#ff8216'}
+                                                         onPre={()  => this.props.Auth.ChangeLang('en-in')}
+                                                         color2={'#ff9500'}
+                                                         loading={this.state.loading}
+                                                         color3={'#ffbe00'}/>
+
+                              <ButtonCustomWithiconColor title={'Hindi'}
+                                                         onPre={() => this.props.Auth.ChangeLang('hi')}
+                                                         iconname={'language'}
+                                                         type={'entypo'}
+                                                         color1={'#3accff'}
+                                                         color2={'#69b1ff'}
+                                                         color3={'#87acff'}/>
+
+                                                         <ButtonCustomWithiconColor title={'Nepali'}
+                                                         onPre={() => this.props.Auth.ChangeLang('ne')}
+                                                         iconname={'language'}
+                                                         type={'entypo'}
+                                                         color1={'#4affaf'}
+                                                         color2={'#44eea5'}
+                                                         color3={'#3dc885'}/>
+                          </View>
+
+
+
+                  </View>
+              </Modal>
+
+
+
+
           </View>
         </View>
       </ImageBackground>

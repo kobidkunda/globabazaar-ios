@@ -245,7 +245,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'account-arrow-right'}
-                      placeholder="First Name"
+                      placeholder={this.props.Auth.langfile.words.fn}
                       onChangeText={handleChange('fname')}
                       onBlur={() => setFieldTouched('fname')}
                       autoCorrect={false}
@@ -271,7 +271,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'account-arrow-left'}
-                      placeholder="Last Name"
+                      placeholder={this.props.Auth.langfile.words.ln}
                       onChangeText={handleChange('lname')}
                       onBlur={() => setFieldTouched('lname')}
                       autoCorrect={false}
@@ -297,7 +297,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'email-open'}
-                      placeholder="Email"
+                      placeholder={this.props.Auth.langfile.words.em}
                       onChangeText={handleChange('email')}
                       onBlur={() => setFieldTouched('email')}
                       autoCorrect={false}
@@ -323,7 +323,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'cellphone-android'}
-                      placeholder="Phone"
+                      placeholder={this.props.Auth.langfile.words.ph}
                       onChangeText={handleChange('phone')}
                       onBlur={() => setFieldTouched('phone')}
                       autoCorrect={false}
@@ -349,7 +349,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'map-marker-minus'}
-                      placeholder="Street"
+                      placeholder={this.props.Auth.langfile.words.st}
                       onChangeText={handleChange('street')}
                       onBlur={() => setFieldTouched('street')}
                       autoCorrect={false}
@@ -375,7 +375,34 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'home-map-marker'}
-                      placeholder="City"
+                      placeholder={this.props.Auth.langfile.words.ct}
+                      onChangeText={handleChange('city')}
+                      onBlur={() => setFieldTouched('city')}
+                      autoCorrect={false}
+                      keyboardType={'default'}
+                      textContentType={'city'}
+                      status={
+                        touched.city && errors.city ? 'danger' : 'primary'
+                      }
+                      shake={true}
+                      errorMessage={
+                        touched.city && errors.city ? errors.city : ''
+                      }
+                    />
+
+
+                    <InputCustom
+                      InputonSubmitEditing={() => {
+                        this.focusTheField('state');
+                      }}
+                      InputRef={input => {
+                        this.inputs.city = input;
+                      }}
+                      value={values.city}
+                      blurOnSubmit={false}
+                      returnKeyType={'next'}
+                      leftIcon={'home-map-marker'}
+                      placeholder={this.props.Auth.langfile.words.cou}
                       onChangeText={handleChange('city')}
                       onBlur={() => setFieldTouched('city')}
                       autoCorrect={false}
@@ -401,7 +428,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'mapbox'}
-                      placeholder="State"
+                      placeholder={this.props.Auth.langfile.words.sta}
                       onChangeText={handleChange('state')}
                       onBlur={() => setFieldTouched('state')}
                       autoCorrect={false}
@@ -426,7 +453,7 @@ export default class Register extends Component {
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'pin'}
-                      placeholder="Pin Code"
+                      placeholder={this.props.Auth.langfile.words.pn}
                       onChangeText={handleChange('pincode')}
                       onBlur={() => setFieldTouched('pincode')}
                       autoCorrect={false}
@@ -444,7 +471,7 @@ export default class Register extends Component {
                       <View style={{
                           padding:10
                       }}>
-                          <TEXTLLGWHITEVV>Prefered Language of Video</TEXTLLGWHITEVV>
+                          <TEXTLLGWHITEVV>Preferred Language of Video</TEXTLLGWHITEVV>
                       </View>
                       <ButtonGroup
                           selectedButtonStyle={{
@@ -471,7 +498,7 @@ export default class Register extends Component {
                       keyboardType={'default'}
                       onChangeText={handleChange('password')}
                       onBlur={() => setFieldTouched('password')}
-                      placeholder={'Password'}
+                      placeholder={this.props.Auth.langfile.words.pw}
                       leftIcon={'onepassword'}
                       returnKeyType={'go'}
                       autoCorrect={false}
@@ -494,7 +521,7 @@ export default class Register extends Component {
 
                     <View>
                       <ButtonCustom
-                        title={'Register'}
+                        title={this.props.Auth.langfile.words.rgd}
                         loading={this.state.loading}
                         onPre={handleSubmit}
                       />

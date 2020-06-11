@@ -73,6 +73,8 @@ class App extends Component {
   } /** Update pops a confirmation dialog, and then immediately reboots the app */
 
   async sync() {
+
+  
     await CodePush.sync(
       {installMode: CodePush.InstallMode.IMMEDIATE, updateDialog: true},
 

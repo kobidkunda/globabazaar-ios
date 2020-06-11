@@ -1,26 +1,27 @@
 import React, {Component} from 'react';
 import {
-  Text,
-  View,
-  Dimensions,
-  StyleSheet,
-  ImageBackground,
-  Image,
-  TouchableWithoutFeedback,
-  TouchableOpacity,
-  KeyboardAvoidingView,
+    Text,
+    View,
+    Dimensions,
+    StyleSheet,
+    ImageBackground,
+    Image,
+    TouchableOpacity,
+    KeyboardAvoidingView, KeyboardStatic as Keyboard,
 } from 'react-native';
-import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
 import {Formik} from 'formik';
 import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
+import RNOtpVerify from 'react-native-otp-verify';
+import {inject, observer} from 'mobx-react';
+import {TEXTLLGWHITE} from '../../Style/TextStyle';
 import ButtonOutline from '../../Component/ButtonOutline';
-import TextPrimary from '../../Component/TextPrimary';
 
 let HEIGHT = Dimensions.get('screen').height;
 let WIDTH = Dimensions.get('screen').width;
-
+@inject('Auth')
+@observer
 export default class ForgotPassword extends Component {
   constructor(props) {
     super(props);
@@ -29,15 +30,41 @@ export default class ForgotPassword extends Component {
       otpsent: false,
       editable: true,
       loading: false,
+        otp: null,
+        phone: null
     };
   }
   OnLogin = async values => {
-    console.log(values);
-    this.setState({
-      editable: false,
-      otpsent: true,
-      loading: false,
-    });
+
+      let otpleft = this.props.Auth.otpretry;
+
+      if (otpleft > 0 ){
+          this.setState({
+              loading: true,
+              phone: values.phone
+          });
+          this.props.Auth.otpretry =    Number(this.props.Auth.otpretry) - 1;
+          let hhaasshh = await RNOtpVerify.getHash();
+
+
+
+          let kkkk = await this.props.Auth.SendOtpmsg(hhaasshh, this.state.phone);
+          console.log(hhaasshh);
+          console.log(values.phone);
+          console.log(kkkk);
+
+
+          this.setState({
+              editable: false,
+              otpsent: true,
+              loading: false,
+          });
+      } else {
+          alert('Maximum Retry reached Try in 1 hour')
+      }
+
+
+
   };
 
   inputs = {};
@@ -60,6 +87,10 @@ export default class ForgotPassword extends Component {
           style={{
             flex: 1,
           }}>
+            <KeyboardAvoidingView
+                keyboardVerticalOffset={100} // adjust the value here if you need more padding
+                style={{flex: 1.5}}
+                behavior="padding">
           <View
             size={50}
             style={{
@@ -92,6 +123,8 @@ export default class ForgotPassword extends Component {
             style={{
               flex: 1.5,
             }}>
+
+              {this.state.otpsent === false ? (
             <Formik
               enableReinitialize={true}
               initialValues={{
@@ -118,10 +151,7 @@ export default class ForgotPassword extends Component {
                 isValid,
                 handleSubmit,
               }) => (
-                <KeyboardAvoidingView
-                  keyboardVerticalOffset={100} // adjust the value here if you need more padding
-                  style={{flex: 1.5}}
-                  behavior="padding">
+
                   <View>
                     <InputCustom
                       InputRef={input => {
@@ -146,56 +176,79 @@ export default class ForgotPassword extends Component {
                         touched.phone && errors.phone ? errors.phone : ''
                       }
                     />
-                  </View>
-                  {this.state.otpsent === true ? (
-                    <View>
-                      <InputCustom
-                        InputRef={input => {
-                          this.inputs.otp = input;
-                        }}
-                        value={values.otp}
-                        blurOnSubmit={false}
-                        returnKeyType={'next'}
-                        leftIcon={'cellphone-android'}
-                        placeholder="otp"
-                        onChangeText={handleChange('phone')}
-                        onBlur={() => setFieldTouched('otp')}
-                        autoCorrect={false}
-                        secureTextEntry={true}
-                        keyboardType={'onepassword'}
-                        textContentType={'phone'}
-                        editable={this.state.editable}
-                        status={
-                          touched.otp && errors.otp ? 'danger' : 'primary'
-                        }
-                        shake={true}
-                        errorMessage={
-                          touched.otp && errors.otp ? errors.otp : ''
-                        }
-                      />
-                    </View>
-                  ) : null}
 
-                  <View>
-                    {this.state.otpsent === true ? (
-                      <ButtonCustom
-                        title={'Validate OTP'}
-                        loading={this.state.loading}
-                        onPre={handleSubmit}
-                      />
-                    ) : (
-                      <ButtonCustom
-                        title={'Send OTP'}
-                        loading={this.state.loading}
-                        onPre={handleSubmit}
-                      />
-                    )}
+                    <View>
+                        <ButtonCustom
+                            title={'Send OTP'}
+                            loading={this.state.loading}
+                            onPre={handleSubmit}
+                        />
+                    </View>
+
+
                   </View>
-                </KeyboardAvoidingView>
+
+
+
+
               )}
             </Formik>
+
+                  ) : null }
+
+
+
+              {this.state.otpsent === true ? (
+
+
+                          <View>
+                  <View>
+                      <InputCustom
+                          InputRef={input => {
+                              this.inputs.otp = input;
+                          }}
+                          value={this.state.otp}
+                          blurOnSubmit={false}
+                          returnKeyType={'next'}
+                          leftIcon={'cellphone-android'}
+                          placeholder="otp"
+                          onChangeText={(value) => this.setState({otp: value})}
+                          autoCorrect={false}
+                          secureTextEntry={true}
+                          keyboardType={'phone-pad'}
+                          textContentType={'phone'}
+                      />
+
+                  </View>
+                              <ButtonCustom
+                                  title={'Send OTP'}
+                                  loading={this.state.loading}
+                                 // onPre={handleSubmit}
+                              />
+
+                          </View>
+
+
+              ) : null}
+
+
+
+
+              <View style={{
+                  padding:10,
+                  alignItems:'center'
+              }}>
+                  <ButtonOutline onPress={() => this.OnLogin} title={'OTP Retry left ' + this.props.Auth.otpretry}/>
+
+              </View>
+
+
+
+
           </View>
+                  </KeyboardAvoidingView>
         </View>
+
       </ImageBackground>
     );
   }

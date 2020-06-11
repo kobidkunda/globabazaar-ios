@@ -5,8 +5,9 @@ import {
   GET_NOTIFY_LIST,
   PROFILE,
 } from '../Config/URL';
-
 export default class User {
+  @observable first_name = null;
+  @observable last_name = null;
   @observable avatar = null;
   @observable address_proof = null;
   @observable id_proof = null;
@@ -15,9 +16,7 @@ export default class User {
   @observable date_of_birth = null;
   @observable email = null;
   @observable email_verified_at = null;
-  @observable first_name = null;
   @observable id = null;
-  @observable last_name = null;
   @observable onesignal_player_id = null;
   @observable phone = null;
   @observable pin_code = null;
@@ -27,6 +26,7 @@ export default class User {
   @observable route = 1;
   @observable liveclass = null;
   @observable device_uuid = null;
+  @observable is_prospect_filled = null;
 
   @action getLiveClass = async access_token => {
     let USER_PROFILE = await fetch(GET_LIVE_CLASS, {
@@ -97,6 +97,7 @@ export default class User {
       this.address_proof = USER_PROFILE_DARTA.address_proof;
       this.is_premium = USER_PROFILE_DARTA.is_premium;
       this.id_proof = USER_PROFILE_DARTA.id_proof;
+      this.is_prospect_filled = USER_PROFILE_DARTA.is_prospect_filled;
       console.log(USER_PROFILE_DARTA);
       return true;
     } else {
@@ -137,6 +138,7 @@ export default class User {
       this.address_proof = USER_PROFILE_DARTA.address_proof;
       this.is_premium = USER_PROFILE_DARTA.is_premium;
       this.id_proof = USER_PROFILE_DARTA.id_proof;
+      this.is_prospect_filled = USER_PROFILE_DARTA.is_prospect_filled;
       return USER_PROFILE_DARTA;
     } else {
       return false;
@@ -153,15 +155,22 @@ export default class User {
         this.id_proof === null)
     ) {
       this.route = 2;
+    } else if (this.is_prospect_filled === 0) {
+      this.route = 4;
     } else if (
       this.avatar !== null ||
       this.address_proof !== null ||
-      (this.id_proof !== null && this.is_premium === true)
+      (this.id_proof !== null &&
+        this.is_premium === true &&
+        this.is_prospect_filled === 1)
     ) {
       this.route = 3;
     } else {
       this.route = 1;
     }
+
+    console.log('route ' + this.route);
+    console.log('route2 ' + this.is_prospect_filled);
   };
 
   @action ADD_NOTIFY_DEVICES = async (access_token, uuid) => {

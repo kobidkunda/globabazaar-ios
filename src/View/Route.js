@@ -21,6 +21,7 @@ import WebPay from './Payment/Payments/WebPay';
 import UpcomingClass from './Logged/UpcomingClass';
 import UpcomingClassDetails from './Logged/UpcomingClassDetails';
 import NotificationPage from './Logged/NotificationPage';
+import SelfForm from './Auth/SelfForm';
 
 
 const Stack = createStackNavigator();
@@ -101,6 +102,7 @@ export default class Route extends Component {
           return (
               <NavigationContainer>
                   <Stack.Navigator>
+
                       <Stack.Screen options={{headerShown: false}}  name="Login" component={Login} />
                       <Stack.Screen options={{headerShown: false}}  name="Register" component={Register} />
                       <Stack.Screen options={{headerShown: false}}  name="ForgotPassword" component={ForgotPassword} />
@@ -117,6 +119,15 @@ export default class Route extends Component {
                       <Stack.Screen options={ConfirmPayment.navigationOptions} name="ConfirmPayment" component={ConfirmPayment} />
                       <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
                       <Stack.Screen options={WebPay.navigationOptions} name="WebPay" component={WebPay} />
+                  </Stack.Navigator>
+              </NavigationContainer>
+          );
+      }   else if (this.props.Auth.logged === true  && this.props.User.route === 4){
+          return (
+              <NavigationContainer>
+                  <Stack.Navigator>
+
+                      <Stack.Screen options={{headerShown: false}} name="SelfForm" component={SelfForm} />
                   </Stack.Navigator>
               </NavigationContainer>
           );

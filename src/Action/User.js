@@ -155,8 +155,6 @@ export default class User {
         this.id_proof === null)
     ) {
       this.route = 2;
-    } else if (this.is_prospect_filled === 0) {
-      this.route = 4;
     } else if (
       this.avatar !== null ||
       this.address_proof !== null ||
@@ -168,6 +166,11 @@ export default class User {
     } else {
       this.route = 1;
     }
+
+
+    /*  else if (this.is_prospect_filled === 0) {
+    this.route = 4;
+  }*/
 
     console.log('route ' + this.route);
     console.log('route2 ' + this.is_prospect_filled);

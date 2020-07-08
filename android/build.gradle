@@ -8,8 +8,9 @@ buildscript {
         targetSdkVersion = 28
     }
     repositories {
+     jcenter()
         google()
-        jcenter()
+
                 maven { url 'https://plugins.gradle.org/m2/' } // Gradle Plugin Portal
 
     }

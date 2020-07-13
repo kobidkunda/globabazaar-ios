@@ -11,7 +11,7 @@ import CircleLoader from '../../../Component/Loader/CircleLoader';
 import ClassLoader from '../../../Component/Loader/ClassLoader';
 @inject('Auth','User','Class')
 @observer
-export default class ClassListComp extends Component {
+export default class ClassListCompt extends Component {
   constructor(props) {
     super(props);
 
@@ -43,10 +43,6 @@ async  componentDidMount(): void {
       return(
           <Row>
             <DashboardSchedule
-
-                onPress={() => this.props.navigation.navigate('UpcomingClassDetails',{
-                    id: item.id
-                })}
                 teacher={item.seminar_to_teacher.name}
                 url={BASE_URL+ item.seminar_to_teacher.image}
                 title={item.title}

@@ -56,7 +56,7 @@ export default class Dashboard extends Component {
 
       if (LiveClass !== 'false'){
           console.log(LiveClass);
-          console.log('llii');
+          console.log('live class');
           this.setState({
               liveclassdata: LiveClass[0],
               liveclass: true
@@ -182,7 +182,7 @@ export default class Dashboard extends Component {
                   paddingLeft:20
 
               }}>
-                  <TEXTNLBLACK>Upcoming Classes</TEXTNLBLACK>
+                  <TEXTNLBLACK>Live Classes</TEXTNLBLACK>
               </View>
               <DasboardClass  navigation={this.props.navigation} count={3}/>
 
@@ -247,24 +247,6 @@ export default class Dashboard extends Component {
                 </View>
 
             </Modal>
-
-            <View
-            style={{
-              flex: 1,
-              paddingTop: 20,
-            }}>
-                {this.state.liveclass === true? (
-                    <ButtonCustom onPre={() => this.props.navigation.navigate('Youtube',{
-                        youtube_id: this.state.liveclassdata.youtube_id,
-                        }
-                    )} title={'View Live Class'}/>
-                ): (
-                    <ButtonCustomDisabled title={'No Live Class'}/>
-                )}
-
-
-
-          </View>
         </View>
       </LinearGradient>
     );

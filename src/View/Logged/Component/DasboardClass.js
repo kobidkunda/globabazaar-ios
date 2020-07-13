@@ -17,9 +17,8 @@ export default class DasboardClass extends Component {
 
     this.state = {
         loading: true,
-      class : [
-
-      ]
+      class : [],
+        activeclass: []
     };
   }
 
@@ -27,19 +26,26 @@ async  componentDidMount(): void {
     let _Token = await  this.props.Auth.GetToken();
     console.log(this.props.count)
     let Teacherlist = await  this.props.Class.upcomingClass( _Token,this.props.count);
-    console.log('Teacherlist')
+
+    console.log('Classlist')
     console.log(Teacherlist)
+
+    let LiveClass = await this.props.User.getLiveClass(_Token);
+
+    console.log(LiveClass);
+
 
 
     this.setState({
       class: Teacherlist,
+        activeclass: LiveClass,
         loading:false
     })
 
   }
 
   renderButtons(teacher) {
-    return this.state.class.map((item, index) => {
+    return this.state.activeclass.map((item, index) => {
       return(
           <Row>
             <DashboardSchedule

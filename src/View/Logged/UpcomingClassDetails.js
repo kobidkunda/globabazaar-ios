@@ -8,6 +8,7 @@ import {
   StatusBar,
   Image, Linking, Alert,
 } from 'react-native';
+import Moment from 'react-moment';
 import DasboardClass from './Component/DasboardClass';
 import {BLUEDARK, BLUESLIGHT, HEIGHT, WHITE, WIDTH} from '../../Config/theme';
 import {
@@ -23,6 +24,7 @@ import {inject, observer} from 'mobx-react';
 import ButtonCustom from '../../Component/ButtonCustom';
 import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
 import {BASE_URL} from '../../Config/URL';
+import ButtonCustomDisabled from "../../Component/ButtonCustomDisabled";
 @inject('Auth','User','Class')
 @observer
 export default class UpcomingClassDetails extends Component {
@@ -48,6 +50,10 @@ export default class UpcomingClassDetails extends Component {
   }
 
  async componentDidMount(): void {
+
+
+
+
    let _Token = await  this.props.Auth.GetToken();
 
    let classDetails = await this.props.Class.upcomingClassDETAILS(_Token,this.props.route.params.id);
@@ -57,6 +63,16 @@ export default class UpcomingClassDetails extends Component {
      data:classDetails.seminars,
      teacher:classDetails.seminars.seminar_to_teacher
    })
+
+     let dt = Date();
+
+   let kkk =   moment().format('MMMM Do YYYY, h:mm:ss a')
+
+
+
+
+
+
   }
 
    addevent = async() => {
@@ -221,6 +237,10 @@ export default class UpcomingClassDetails extends Component {
             }}>
             <TEXTNLBLACKD>Description</TEXTNLBLACKD>
             <Text>
+            Time:   {this.state.data.start_date_time}
+            </Text>
+
+              <Text>
               {this.state.data.lecture}
             </Text>
           </View>
@@ -238,7 +258,16 @@ export default class UpcomingClassDetails extends Component {
                                            color2={'#54B666'}
                                            color3={'#54B666'}
                 />
+
+                <ButtonCustom onPre={() => this.props.navigation.navigate('Youtube',{
+                        youtube_id: this.state.data.youtube_id,
+                    }
+                )} title={'View Live Class'}/>
+               
             </View>
+
+
+
 
         </View>
       </View>

@@ -3,6 +3,7 @@ import {Text, View, Dimensions, StyleSheet, ScrollView} from 'react-native';
 import DasboardClass from './Component/DasboardClass';
 import {BLUEDARK, BLUESLIGHT} from '../../Config/theme';
 import ClassListComp from './Component/ClassListComp';
+import ClassListCompt from "./Component/ClassListCompt";
 
 export default class UpcomingClass extends Component {
   static navigationOptions = {
@@ -31,7 +32,7 @@ export default class UpcomingClass extends Component {
         flex:1,
 
       }}>
-        <ClassListComp navigation={this.props.navigation} count={22} />
+        <ClassListCompt navigation={this.props.navigation} count={22} />
       </View>
     );
   }

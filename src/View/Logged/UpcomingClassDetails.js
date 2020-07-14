@@ -8,7 +8,6 @@ import {
   StatusBar,
   Image, Linking, Alert,
 } from 'react-native';
-import Moment from 'react-moment';
 import DasboardClass from './Component/DasboardClass';
 import {BLUEDARK, BLUESLIGHT, HEIGHT, WHITE, WIDTH} from '../../Config/theme';
 import {
@@ -263,7 +262,7 @@ export default class UpcomingClassDetails extends Component {
                         youtube_id: this.state.data.youtube_id,
                     }
                 )} title={'View Live Class'}/>
-               
+
             </View>
 
 

@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Text, View, Dimensions, StyleSheet} from 'react-native';
+import {Text, View, Dimensions, StyleSheet, ScrollView, ActivityIndicator} from 'react-native';
 import {ListItem} from 'react-native-elements';
 import {BLUEDARK, BLUESLIGHT} from '../../Config/theme';
 import {inject, observer} from 'mobx-react';
+import { Icon } from 'react-native-elements'
 
 
 @inject('Auth','User')
@@ -25,6 +26,7 @@ export default class NotificationPage extends Component {
 
     this.state = {
       notification: [],
+        loading:true
     };
   }
 
@@ -33,7 +35,8 @@ export default class NotificationPage extends Component {
 
     let Allnotification = await this.props.User.GET_ALL_NOTIFICATION(_TOKEN);
     this.setState({
-      notification: Allnotification.user_notifications
+      notification: Allnotification.user_notifications,
+        loading:false
     });
 
     console.log(Allnotification);
@@ -43,18 +46,30 @@ export default class NotificationPage extends Component {
 
 
     return (
-      <View style={{
+      <ScrollView style={{
           backgroundColor:'#dadada'
       }}>
+          { this.state.loading === true ? (
+              <ActivityIndicator size={'large'}/>
+          ): null }
+
+
         {this.state.notification.map((l, i) => (
           <ListItem
             key={i}
-            title={l.user_id}
-            subtitle={l.user_id}
+            leftIcon={
+                <Icon
+                    name='bell'
+                    type='simple-line-icon'
+                    color='#517fa4'
+                />
+            }
+            title={'New Video added'}
+            subtitle={l.created_at}
             bottomDivider
           />
         ))}
-      </View>
+      </ScrollView>
     );
   }
 }

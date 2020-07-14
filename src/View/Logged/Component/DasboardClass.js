@@ -18,24 +18,14 @@ export default class DasboardClass extends Component {
     this.state = {
         loading: true,
       class : [],
-        activeclass: []
+        activeclass: null
     };
   }
 
 async  componentDidMount(): void {
     let _Token = await  this.props.Auth.GetToken();
-    console.log(this.props.count)
     let Teacherlist = await  this.props.Class.upcomingClass( _Token,this.props.count);
-
-    console.log('Classlist')
-    console.log(Teacherlist)
-
     let LiveClass = await this.props.User.getLiveClass(_Token);
-
-    console.log(LiveClass);
-
-
-
     this.setState({
       class: Teacherlist,
         activeclass: LiveClass,
@@ -45,24 +35,30 @@ async  componentDidMount(): void {
   }
 
   renderButtons(teacher) {
-    return this.state.activeclass.map((item, index) => {
-      return(
-          <Row>
-            <DashboardSchedule
 
-                onPress={() => this.props.navigation.navigate('UpcomingClassDetails',{
-                    id: item.id
-                })}
-                teacher={item.seminar_to_teacher.name}
-                url={BASE_URL+ item.seminar_to_teacher.image}
-                title={item.title}
-                time={item.time}
-                date={item.date}
+      console.log(this.state.activeclass);
+     if (this.state.activeclass === 'false') {
+        console.log('active class is false')
+     } else {
+         return this.state.activeclass.map((item, index) => {
+             return (
+                 <Row>
+                     <DashboardSchedule
 
-            />
-          </Row>
-      );
-    })
+                         onPress={() => this.props.navigation.navigate('UpcomingClassDetails', {
+                             id: item.id
+                         })}
+                         teacher={item.seminar_to_teacher.name}
+                         url={BASE_URL + item.seminar_to_teacher.image}
+                         title={item.title}
+                         time={item.time}
+                         date={item.date}
+
+                     />
+                 </Row>
+             );
+         })
+     }
 
   }
 
@@ -95,7 +91,13 @@ async  componentDidMount(): void {
                           justifyContent: 'flex-start',
                           alignItems: 'center',
                       }}>
-                      { this.renderButtons(this.state.class)}
+
+
+                      {this.renderButtons(this.state.class)}
+
+
+
+
                   </Grid>
               )}
       </Grid>

@@ -85,9 +85,13 @@ export default class Route extends Component {
 
   render() {
 
+      const linking = {
+          prefixes: ['http://globalbazaar.top/','https://globalbazaar.top/'],
+      }
+
       if (this.props.Auth.logged === true && this.props.User.route === 3){
           return (
-              <NavigationContainer>
+              <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                   <Stack.Navigator>
                       <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
                       <Stack.Screen options={Youtube.navigationOptions}  name="Youtube" component={Youtube} />
@@ -100,7 +104,7 @@ export default class Route extends Component {
           );
       } else if (this.props.Auth.logged === false ){
           return (
-              <NavigationContainer>
+              <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                   <Stack.Navigator>
 
                       <Stack.Screen options={{headerShown: false}}  name="Login" component={Login} />
@@ -112,7 +116,7 @@ export default class Route extends Component {
       }
       else if (this.props.Auth.logged === true  && this.props.User.route === 1){
           return (
-              <NavigationContainer>
+              <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                   <Stack.Navigator>
 
                       <Stack.Screen options={InitatePayment.navigationOptions} name="InitatePayment" component={InitatePayment} />
@@ -124,7 +128,7 @@ export default class Route extends Component {
           );
       }   else if (this.props.Auth.logged === true  && this.props.User.route === 4){
           return (
-              <NavigationContainer>
+              <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                   <Stack.Navigator>
 
                       <Stack.Screen options={{headerShown: false}} name="SelfForm" component={SelfForm} />
@@ -135,7 +139,7 @@ export default class Route extends Component {
 
       else if (this.props.Auth.logged === true  && this.props.User.route === 2){
           return (
-              <NavigationContainer>
+              <NavigationContainer linking={linking} fallback={<Text>Loading...</Text>}>
                   <Stack.Navigator>
                       <Stack.Screen options={DoccuUpload.navigationOptions} name="DoccuUpload" component={DoccuUpload} />
                   </Stack.Navigator>

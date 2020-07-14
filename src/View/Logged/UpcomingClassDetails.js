@@ -44,7 +44,8 @@ export default class UpcomingClassDetails extends Component {
 
     this.state = {
       data: [],
-      teacher:[]
+      teacher:[],
+        loading: true
     };
   }
 
@@ -60,14 +61,9 @@ export default class UpcomingClassDetails extends Component {
 
    this.setState({
      data:classDetails.seminars,
-     teacher:classDetails.seminars.seminar_to_teacher
+     teacher:classDetails.seminars.seminar_to_teacher,
+       loading: false
    })
-
-     let dt = Date();
-
-   let kkk =   moment().format('MMMM Do YYYY, h:mm:ss a')
-
-
 
 
 
@@ -258,10 +254,15 @@ export default class UpcomingClassDetails extends Component {
                                            color3={'#54B666'}
                 />
 
-                <ButtonCustom onPre={() => this.props.navigation.navigate('Youtube',{
-                        youtube_id: this.state.data.youtube_id,
-                    }
-                )} title={'View Live Class'}/>
+                <ButtonCustom
+                    loading={this.state.loading}
+                    onPre={() => this.props.navigation.navigate('Youtube',{
+                            youtube_id: this.state.data.youtube_id,
+                        }
+                    )} title={'View Live Class'}/>
+
+
+
 
             </View>
 

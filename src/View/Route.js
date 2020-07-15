@@ -22,6 +22,7 @@ import UpcomingClass from './Logged/UpcomingClass';
 import UpcomingClassDetails from './Logged/UpcomingClassDetails';
 import NotificationPage from './Logged/NotificationPage';
 import SelfForm from './Auth/SelfForm';
+import Chat from "./Logged/Chat";
 
 
 const Stack = createStackNavigator();
@@ -95,6 +96,7 @@ export default class Route extends Component {
                   <Stack.Navigator>
                       <Stack.Screen options={{headerShown: false}}  name="Dashboard" component={Dashboard} />
                       <Stack.Screen options={Youtube.navigationOptions}  name="Youtube" component={Youtube} />
+                      <Stack.Screen options={Chat.navigationOptions}  name="Chat" component={Chat} />
                       <Stack.Screen options={NotificationPage.navigationOptions}  name="NotificationPage" component={NotificationPage} />
                       <Stack.Screen options={UpcomingClass.navigationOptions}  name="UpcomingClass" component={UpcomingClass} />
                       <Stack.Screen  options={{headerShown: false}}  name="UpcomingClassDetails" component={UpcomingClassDetails} />

@@ -13,6 +13,7 @@ import {
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
 import * as RNLocalize from "react-native-localize";
+import { Icon } from 'react-native-elements'
 
 import InputCustom from '../../Component/InputCustom';
 import ButtonCustom from '../../Component/ButtonCustom';
@@ -21,7 +22,7 @@ import TextPrimary from '../../Component/TextPrimary';
 import LinearGradient from 'react-native-linear-gradient';
 import {TEXTLG, TEXTLLG, TEXTNLBLACK, TEXTNLBLACKD} from '../../Style/TextStyle';
 import CardWithIcons from '../../Component/CardWithIcons';
-import {BLUEDARK, BLUESLIGHT, ORANGE} from '../../Config/theme';
+import {BLUEDARK, BLUESLIGHT, ORANGE, WHITE} from '../../Config/theme';
 import Youtube from './Component/Youtube';
 import DasboardTeacher from './Component/DasboardTeacher';
 import DasboardClass from './Component/DasboardClass';
@@ -67,6 +68,10 @@ export default class Dashboard extends Component {
  }
 
     render() {
+
+
+
+
     return (
       <LinearGradient
         colors={[
@@ -187,6 +192,44 @@ export default class Dashboard extends Component {
               <DasboardClass  navigation={this.props.navigation} count={3}/>
 
           </View>
+
+            <LinearGradient
+                colors={[BLUESLIGHT, BLUEDARK]}
+                style={{
+                width:60,
+                height:60,
+                backgroundColor:BLUEDARK,
+                position:'absolute',
+                bottom:10,
+                right:10,
+                borderRadius:100,
+                justifyContent: 'center',
+                alignItems: 'center',
+                shadowColor: "#000",
+                shadowOffset: {
+                    width: 0,
+                    height: 12,
+                },
+                shadowOpacity: 0.58,
+                shadowRadius: 16.00,
+
+                elevation: 24,
+
+            }}>
+
+                <Icon
+                    containerStyle={{
+
+                    }}
+                    name='chat-bubble-outline'
+                    type='material'
+                    color={WHITE}
+                    onPress={() => this.props.navigation.navigate('Chat')}
+                    size={30}
+                    solid
+                    reverseColor={BLUEDARK}
+                />
+            </LinearGradient>
 
             <Modal
                 isVisible={this.props.Auth.update_modal}

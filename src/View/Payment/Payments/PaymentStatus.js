@@ -128,7 +128,7 @@ export default class PaymentStatus extends Component {
                             source={require('../../../../../../Asset/lottie/success')}
                         />
                         <Text style={{color: COLOR1,
-                            fontFamily: 'MontserratSemiBold',
+                            fontFamily: 'Montserrat-SemiBold',
                             fontSize:20,
                             textTransform: 'uppercase',
                         }}>{this.props.confirmtitle}</Text>

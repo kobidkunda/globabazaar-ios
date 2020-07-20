@@ -30,7 +30,7 @@ const styles = StyleSheet.create({
     borderWidth: 0,
   },
   titleStyle: {
-    fontFamily: 'MontserratSemiBold',
+    fontFamily: 'Montserrat-SemiBold',
     textTransform: 'uppercase',
       color:WHITE
   },

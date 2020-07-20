@@ -34,7 +34,7 @@ export default class DoccuUpload extends Component {
         headerTintColor: BLUESLIGHT,
         headerTitleStyle: {
             fontWeight: 'bold',
-            fontFamily: 'MontserratMedium',
+            fontFamily: 'Montserrat-Medium',
             color: WHITE,
         },
     };

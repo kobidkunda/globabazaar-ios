@@ -137,6 +137,21 @@ export default class Login extends Component {
                 <Icon name={'language'} type={'entypo'} color={WHITE}/>
                 <TEXTLLGWHITE> Language</TEXTLLGWHITE>
             </TouchableOpacity>
+
+            <TouchableOpacity
+                onPress={() => this.props.navigation.navigate('Chat')}
+                style={{
+                position:'absolute',
+                padding:5,
+                marginTop:30,
+                left:10,
+                borderColor:WHITE,
+                borderWidth:1,
+                borderRadius:7
+            }}>
+                <Icon name={'chat-bubble-outline'} type={'material'} color={WHITE}/>
+                <TEXTLLGWHITE>Live Chat</TEXTLLGWHITE>
+            </TouchableOpacity>
           <View
             size={50}
             style={{

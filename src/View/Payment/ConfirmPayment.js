@@ -42,7 +42,7 @@ export default class ConfirmPayment extends Component {
         headerTintColor: BLUESLIGHT,
         headerTitleStyle: {
             fontWeight: 'bold',
-            fontFamily: 'MontserratBold',
+            fontFamily: 'Montserrat-Bold',
             color: WHITE,
         },
     };

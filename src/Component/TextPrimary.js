@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
     text: {
         color:WHITE,
         fontSize:11,
-        fontFamily:'MontserratBold',
+        fontFamily:'Montserrat-Bold',
         textTransform:'uppercase'
     // backgroundColor: BLUEDARK,
   }

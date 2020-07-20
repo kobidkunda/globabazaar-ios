@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 
   inputStyle: {
     color: WHITE,
-      fontFamily:'MontserratSemiBold',
+      fontFamily:'Montserrat-SemiBold',
   },
   leftIconContainerStyle: {
     paddingLeft: 10,

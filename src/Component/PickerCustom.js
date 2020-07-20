@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
       backgroundColor: BLURBACKGROUND,
       elevation: 10,
       height:50,
-      fontFamily:'MontserratSemiBold',
+      fontFamily:'Montserrat-SemiBold',
       textTransform:'uppercase',
       fontSize:16,
       color: WHITE,
@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     itemStyle: {
         fontSize:16,
       color: WHITE,
-      fontFamily:'MontserratSemiBold',
+      fontFamily:'Montserrat-SemiBold',
       textTransform:'uppercase'
   },
 });

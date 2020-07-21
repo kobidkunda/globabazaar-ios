@@ -39,10 +39,14 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Remind you about videos</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Upload your Photo identification</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We need your location to find your address</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need your location to find your address</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Upload your Photo identification</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Upload your Photo identification</string>
 	<key>UIAppFonts</key>

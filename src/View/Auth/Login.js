@@ -8,7 +8,7 @@ import {
     Image,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    KeyboardAvoidingView, StatusBar, ActivityIndicator,
+    KeyboardAvoidingView, StatusBar, ActivityIndicator, Keyboard,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -118,40 +118,45 @@ export default class Login extends Component {
           style={{
             flex: 1,
           }}>
-            <StatusBar
-                hidden={false}
-                translucent={true}
-                backgroundColor={'rgba(255,255,255,0.0)'}
-            />
-            <TouchableOpacity
-                onPress={() => this.props.Auth.langpopup = true}
-                style={{
-                position:'absolute',
-                padding:5,
-                marginTop:30,
-                right:10,
-                borderColor:WHITE,
-                borderWidth:1,
-                borderRadius:7
-            }}>
-                <Icon name={'language'} type={'entypo'} color={WHITE}/>
-                <TEXTLLGWHITE> Language</TEXTLLGWHITE>
-            </TouchableOpacity>
+            <View style={{flex: .2, flexDirection: 'row'}}>
+                <View style={{width: WIDTH/2, height: 50,}} >
+                    <TouchableOpacity
+                        onPress={() => this.props.Auth.langpopup = true}
+                        style={{
+                            position:'absolute',
+                            padding:5,
+                            marginTop:30,
+                            right:10,
+                            borderColor:WHITE,
+                            borderWidth:1,
+                            borderRadius:7
+                        }}>
+                        <Icon name={'language'} type={'entypo'} color={WHITE}/>
+                        <TEXTLLGWHITE> Language</TEXTLLGWHITE>
+                    </TouchableOpacity>
+                </View>
 
-            <TouchableOpacity
-                onPress={() => this.props.navigation.navigate('Chat')}
-                style={{
-                position:'absolute',
-                padding:5,
-                marginTop:30,
-                left:10,
-                borderColor:WHITE,
-                borderWidth:1,
-                borderRadius:7
-            }}>
-                <Icon name={'chat-bubble-outline'} type={'material'} color={WHITE}/>
-                <TEXTLLGWHITE>Live Chat</TEXTLLGWHITE>
-            </TouchableOpacity>
+                <View style={{width: WIDTH/2, height: 50, }} >
+                    <TouchableOpacity
+                        onPress={() => this.props.navigation.navigate('Chat')}
+                        style={{
+                            position:'absolute',
+                            padding:5,
+                            marginTop:30,
+                            left:10,
+                            borderColor:WHITE,
+                            borderWidth:1,
+                            borderRadius:7
+                        }}>
+                        <Icon name={'chat-bubble-outline'} type={'material'} color={WHITE}/>
+                        <TEXTLLGWHITE>Live Chat</TEXTLLGWHITE>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+
+
+
           <View
             size={50}
             style={{
@@ -254,11 +259,12 @@ export default class Login extends Component {
                       onBlur={() => setFieldTouched('password')}
                       placeholder={this.props.Auth.langfile.words.pw}
                       leftIcon={'onepassword'}
-                      returnKeyType={'go'}
                       autoCorrect={false}
                       value={values.password}
                       blurOnSubmit={false}
                       secureTextEntry={true}
+                      returnKeyType={'done'}
+                      InputonSubmitEditing={() => Keyboard.dismiss()}
                       status={
                         touched.password && errors.password
                           ? 'danger'

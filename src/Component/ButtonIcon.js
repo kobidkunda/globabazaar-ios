@@ -4,12 +4,9 @@ import {BLUEDARK, BLUESLIGHT, WHITE, WIDTH} from '../Config/theme';
 import {Button} from 'react-native-elements';
 import LinearGradient from 'react-native-linear-gradient';
 
-const ButtonCustom = props => (
+const ButtonIcon = props => (
   <View
-    style={{
-      width: WIDTH,
-      padding: 10,
-    }}>
+    style={props.contstyle}>
     <Button
       ViewComponent={LinearGradient} // Don't forget this!
       linearGradientProps={{
@@ -35,10 +32,10 @@ const styles = StyleSheet.create({
     elevation: 10,
   },
   titleStyle: {
-      color: WHITE,
-      fontFamily:'Montserrat-SemiBold',
-      textTransform:'uppercase'
+    color: WHITE,
+    fontFamily: 'Montserrat-SemiBold',
+    textTransform: 'uppercase',
   },
 });
 
-export default ButtonCustom;
+export default ButtonIcon;

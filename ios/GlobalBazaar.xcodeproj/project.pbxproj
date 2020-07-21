@@ -31,6 +31,10 @@
 		8114400E24C6269E003B6536 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114400D24C6269E003B6536 /* NotificationService.swift */; };
 		8114401224C6269E003B6536 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8114400B24C6269E003B6536 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		814A1B7924C7927400EAC885 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7824C7927400EAC885 /* launch_screen.png */; };
+		814A1B7B24C7940400EAC885 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7A24C7940400EAC885 /* ios */; };
+		814A1B7C24C7940400EAC885 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7A24C7940400EAC885 /* ios */; };
+		814A1B7E24C7948800EAC885 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7D24C7948800EAC885 /* AppCenter-Config.plist */; };
+		814A1B7F24C7948800EAC885 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7D24C7948800EAC885 /* AppCenter-Config.plist */; };
 		91D2181FE22A4911BE5B0693 /* MontserratBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 937F884432D84562A6A833B9 /* MontserratBoldItalic.ttf */; };
 		934DF6ABB4E04546845A4733 /* MontserratBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = ABC6AB4989DD4FF8A0692166 /* MontserratBold.ttf */; };
 		ABF6A678878B42CEB5A2F9E0 /* MontserratExtraBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 798692680D4A4B56941D61F0 /* MontserratExtraBoldItalic.ttf */; };
@@ -126,6 +130,8 @@
 		8114400D24C6269E003B6536 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8114400F24C6269E003B6536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		814A1B7824C7927400EAC885 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_screen.png; path = ../src/Assets/Images/launch_screen.png; sourceTree = "<group>"; };
+		814A1B7A24C7940400EAC885 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; name = ios; sourceTree = "<group>"; };
+		814A1B7D24C7948800EAC885 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "AppCenter-Config.plist"; sourceTree = "<group>"; };
 		83FE17DAA6204CE4AFAF85E9 /* AntDesign.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = AntDesign.ttf; path = "../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf"; sourceTree = "<group>"; };
 		88189B5DE3DC425B9A906E76 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Solid.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Solid.ttf"; sourceTree = "<group>"; };
 		89ED221AD2324B468B393AF2 /* Ionicons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = Ionicons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/Ionicons.ttf"; sourceTree = "<group>"; };
@@ -218,6 +224,8 @@
 		13B07FAE1A68108700A75B9A /* GlobalBazaar */ = {
 			isa = PBXGroup;
 			children = (
+				814A1B7D24C7948800EAC885 /* AppCenter-Config.plist */,
+				814A1B7A24C7940400EAC885 /* ios */,
 				81143FE724C62553003B6536 /* GlobalBazaar.entitlements */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
@@ -521,6 +529,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814A1B7B24C7940400EAC885 /* ios in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				64489802AB4F4319AD84D23E /* MontserratBlack.ttf in Resources */,
@@ -535,6 +544,7 @@
 				4FBA588F8D684F478A6E83E2 /* MontserratItalic.ttf in Resources */,
 				DEF494FE0C1447C9BF4980EA /* MontserratLight.ttf in Resources */,
 				1A3D6DA87DA44CAEA5095993 /* MontserratLightItalic.ttf in Resources */,
+				814A1B7E24C7948800EAC885 /* AppCenter-Config.plist in Resources */,
 				07373119DEA647E3BDCDD81D /* MontserratMedium.ttf in Resources */,
 				156A528B5BEE4C58868CCDA9 /* MontserratMediumItalic.ttf in Resources */,
 				220F0664883D44D1ADE36A53 /* MontserratRegular.ttf in Resources */,
@@ -549,7 +559,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				814A1B7C24C7940400EAC885 /* ios in Resources */,
 				2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */,
+				814A1B7F24C7948800EAC885 /* AppCenter-Config.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

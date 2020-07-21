@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   },
   titleStyle: {
       color: WHITE,
-      fontFamily:'MontserratSemiBold',
+      fontFamily:'Montserrat-SemiBold',
       textTransform:'uppercase'
   },
 });

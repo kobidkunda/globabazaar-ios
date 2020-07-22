@@ -31,7 +31,6 @@
 		8114400E24C6269E003B6536 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114400D24C6269E003B6536 /* NotificationService.swift */; };
 		8114401224C6269E003B6536 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8114400B24C6269E003B6536 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		814A1B7924C7927400EAC885 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7824C7927400EAC885 /* launch_screen.png */; };
-		814A1B7B24C7940400EAC885 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7A24C7940400EAC885 /* ios */; };
 		814A1B7C24C7940400EAC885 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7A24C7940400EAC885 /* ios */; };
 		814F630924C7B0F900086853 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814F630824C7B0F900086853 /* AppCenter-Config.plist */; };
 		91D2181FE22A4911BE5B0693 /* MontserratBoldItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 937F884432D84562A6A833B9 /* MontserratBoldItalic.ttf */; };
@@ -528,7 +527,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				814A1B7B24C7940400EAC885 /* ios in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				64489802AB4F4319AD84D23E /* MontserratBlack.ttf in Resources */,

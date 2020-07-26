@@ -280,7 +280,7 @@ PODS:
     - React
   - react-native-splash-screen (3.2.0):
     - React
-  - react-native-webview (9.4.0):
+  - react-native-webview (10.3.2):
     - React
   - React-RCTActionSheet (0.62.2):
     - React-Core/RCTActionSheetHeaders (= 0.62.2)
@@ -348,6 +348,8 @@ PODS:
   - RNCPicker (1.6.5):
     - React
   - RNGestureHandler (1.7.0):
+    - React
+  - RNIap (4.5.0):
     - React
   - RNImageCropPicker (0.31.1):
     - React-Core
@@ -442,6 +444,7 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPicker (from `../node_modules/@react-native-community/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
+  - RNIap (from `../node_modules/react-native-iap`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNLocalize (from `../node_modules/react-native-localize`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
@@ -558,6 +561,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
+  RNIap:
+    :path: "../node_modules/react-native-iap"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNLocalize:
@@ -619,7 +624,7 @@ SPEC CHECKSUMS:
   react-native-onesignal: 3cd5b9b5a2d151698cab987a364f4cbd51552508
   react-native-safe-area-context: 9d9640a9085014864052e38496fc1dfde0b93974
   react-native-splash-screen: 200d11d188e2e78cea3ad319964f6142b6384865
-  react-native-webview: cf5527893252b3b036eea024a1da6996f7344c74
+  react-native-webview: 679b6f400176e2ea8a785acf7ae16cf282e7d1eb
   React-RCTActionSheet: f41ea8a811aac770e0cc6e0ad6b270c644ea8b7c
   React-RCTAnimation: 49ab98b1c1ff4445148b72a3d61554138565bad0
   React-RCTBlob: a332773f0ebc413a0ce85942a55b064471587a71
@@ -634,6 +639,7 @@ SPEC CHECKSUMS:
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPicker: 55b9b4240d0a9eba8733d02616775d4040de2e7d
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
+  RNIap: e5ddd3f0621c714e48dace1e89a644c86a5e23fe
   RNImageCropPicker: 38865ab4af1b0b2146ad66061196bc0184946855
   RNLocalize: b6df30cc25ae736d37874f9bce13351db2f56796
   RNReanimated: c2bb7438b57a3d987bb2e4e6e4bca94787e30b02
@@ -647,6 +653,6 @@ SPEC CHECKSUMS:
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
   YoutubePlayer-in-WKWebView: af2f5929fc78882d94bfdfeea999b661b78d9717
 
-PODFILE CHECKSUM: 6eeddacbb9cd75d531f16eb5285e66f78f102a88
+PODFILE CHECKSUM: 44cffb90c1a0faa74ba7a7774fe173978d161009
 
 COCOAPODS: 1.9.3

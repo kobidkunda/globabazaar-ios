@@ -22,6 +22,8 @@
 	<string>????</string>
 	<key>CFBundleVersion</key>
 	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>CodePushDeploymentKey</key>
+	<string>QqcKUXKSIlwwgFzJozE1tQ1_M4skdteDyP</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -41,8 +43,6 @@
 	<string>Remind you about videos</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Upload your Photo identification</string>
-	<key>CodePushDeploymentKey</key>
-	<string>QqcKUXKSIlwwgFzJozE1tQ1_M4skdteDyP</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>We need your location to find your address</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

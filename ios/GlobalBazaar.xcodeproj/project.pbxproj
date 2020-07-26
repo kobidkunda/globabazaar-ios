@@ -30,6 +30,7 @@
 		722F27D164224D219F5F8BFD /* MontserratBlackItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = A6781BF0D39E47E4B5CB7DFB /* MontserratBlackItalic.ttf */; };
 		8114400E24C6269E003B6536 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8114400D24C6269E003B6536 /* NotificationService.swift */; };
 		8114401224C6269E003B6536 /* OneSignalNotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 8114400B24C6269E003B6536 /* OneSignalNotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		813A134224CB33ED00D6B756 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 813A134124CB33ED00D6B756 /* StoreKit.framework */; };
 		814A1B7924C7927400EAC885 /* launch_screen.png in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7824C7927400EAC885 /* launch_screen.png */; };
 		814A1B7C24C7940400EAC885 /* ios in Resources */ = {isa = PBXBuildFile; fileRef = 814A1B7A24C7940400EAC885 /* ios */; };
 		814F630924C7B0F900086853 /* AppCenter-Config.plist in Resources */ = {isa = PBXBuildFile; fileRef = 814F630824C7B0F900086853 /* AppCenter-Config.plist */; };
@@ -127,6 +128,7 @@
 		8114400B24C6269E003B6536 /* OneSignalNotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = OneSignalNotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		8114400D24C6269E003B6536 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 		8114400F24C6269E003B6536 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		813A134124CB33ED00D6B756 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		814A1B7824C7927400EAC885 /* launch_screen.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = launch_screen.png; path = ../src/Assets/Images/launch_screen.png; sourceTree = "<group>"; };
 		814A1B7A24C7940400EAC885 /* ios */ = {isa = PBXFileReference; lastKnownFileType = folder; path = ios; sourceTree = "<group>"; };
 		814F630824C7B0F900086853 /* AppCenter-Config.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "AppCenter-Config.plist"; path = "GlobalBazaar/AppCenter-Config.plist"; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6BD24988DF701D7470873646 /* libPods-GlobalBazaar.a in Frameworks */,
+				813A134224CB33ED00D6B756 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,6 +242,7 @@
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				813A134124CB33ED00D6B756 /* StoreKit.framework */,
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
 				1E45828B0F43B796C48B208E /* libPods-GlobalBazaar.a */,

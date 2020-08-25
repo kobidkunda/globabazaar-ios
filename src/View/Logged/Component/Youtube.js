@@ -1,7 +1,8 @@
-import YouTube from 'react-native-youtube';
 import React, {Component} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {BLUESLIGHT, WHITE} from '../../../Config/theme';
+import Video from 'react-native-video';
+import VideoPlayer from 'react-native-video-controls';
 
 export default class Youtube extends Component {
   static navigationOptions = {
@@ -34,22 +35,15 @@ export default class Youtube extends Component {
   }
 
   render() {
-
     return (
       <View>
-        <YouTube
-          showFullscreenButton={true}
-          videoId={this.props.route.params.youtube_id} // The YouTube video ID
-          play // control playback of video with true/false
-          apiKey={'AIzaSyBcZarfeGu9rdHgpkuulDETqMaHreL9tnw'}
-          fullscreen={false} // control whether the video should play in fullscreen or inline
-          loop // control whether the video should loop when ended
-          onReady={e => this.setState({isReady: true})}
-          onChangeState={e => this.setState({status: e.state})}
-          onChangeQuality={e => this.setState({quality: e.quality})}
-          onError={e => this.setState({error: e.error})}
-          style={{alignSelf: 'stretch', height: 300}}
-          lightboxMode={true}
+        <VideoPlayer
+          fullscreenAutorotate={true}
+          fullscreenOrientation={'landscape'}
+          source={{uri: this.props.route.params.youtube_id}}
+          toggleResizeModeOnFullscreen={true}
+          navigator={this.props.navigation}
+          reportBandwidth={true}
         />
       </View>
     );

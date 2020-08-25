@@ -257,7 +257,7 @@ export default class UpcomingClassDetails extends Component {
                 <ButtonCustom
                     loading={this.state.loading}
                     onPre={() => this.props.navigation.navigate('Youtube',{
-                            youtube_id: this.state.data.youtube_id,
+                            youtube_id: this.state.data.video,
                         }
                     )} title={'View Live Class'}/>
 

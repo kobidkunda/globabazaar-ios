@@ -1,9 +1,9 @@
 //export const BASE_URL = 'https://service.emporiummarketing.com';
-export const BASE_URL = 'https://gb7app.tecions.tk';
+export const BASE_URL = 'https://globalbazaar.online';
 export const APP_CONFIG =
   'https://raw.githubusercontent.com/kobidkunda/gb7-public/master/appconfig.json';
-export const CLIENT_SECRET = 'bMv3wtVnfYJDqyBJKNt2DSdFaTiftmh7PXjhlgYv';
-export const CLIENT_SECRET_ID = 8;
+export const CLIENT_SECRET = '7kkeSN1JwOiCtAqqitdRF049WSTkjI2AUA4BhLu9';
+export const CLIENT_SECRET_ID = 2;
 export const APP_VERSON = 4;
 //export const BASE_URL = 'http://192.168.0.104:8000';
 export const LOGIN = BASE_URL + '/oauth/token';

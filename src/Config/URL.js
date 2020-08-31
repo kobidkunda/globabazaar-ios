@@ -1,0 +1,24 @@
+//export const BASE_URL = 'https://service.emporiummarketing.com';
+export const BASE_URL = 'https://globalbazaar.online';
+export const APP_CONFIG =
+  'https://raw.githubusercontent.com/kobidkunda/gb7-public/master/appconfig.json';
+export const CLIENT_SECRET = '7kkeSN1JwOiCtAqqitdRF049WSTkjI2AUA4BhLu9';
+export const CLIENT_SECRET_ID = 2;
+export const APP_VERSON = 4;
+//export const BASE_URL = 'http://192.168.0.104:8000';
+export const LOGIN = BASE_URL + '/oauth/token';
+export const REGISTER = BASE_URL + '/api/user/register';
+export const PROFILE = BASE_URL + '/api/user';
+export const UPCOMING_CLASS = BASE_URL + '/api/seminar/upcoming/';
+export const UPCOMING_CLASSDETAILS = BASE_URL + '/api/seminar/show/';
+export const DOCS_UPLOAD = BASE_URL + '/api/application/uploaddocument';
+export const CREATE_ORDER = BASE_URL + '/api/user/createOrder';
+export const CONFIRM_PAYMENT = BASE_URL + '/api/user/confirmPayment';
+export const GET_RANDOM_TEACHER = BASE_URL + '/api/lecturer/random/';
+export const UPLOAD_AVATAR = BASE_URL + '/api/user/upload_avatar';
+export const UPLOAD_ADDRESS_PROOF = BASE_URL + '/api/user/upload_addressproof';
+export const UPLOAD_IDENTITY_PROOF = BASE_URL + '/api/user/upload_idproof';
+export const GET_LIVE_CLASS = BASE_URL + '/api/seminar/live_videos';
+export const GET_NOTIFY_LIST = BASE_URL + '/api/user/onesignal_notifications';
+export const ADD_NOTIFY_LIST = BASE_URL + '/api/user/add_onesignal_notification';
+export const FREE_CLASS = BASE_URL + '/api/seminar/free/language';

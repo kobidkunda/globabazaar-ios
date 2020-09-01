@@ -4,12 +4,11 @@ import {View, StyleSheet, StatusBar} from 'react-native';
 import {BLUESLIGHT, HEIGHT, WHITE, WIDTH} from '../../../Config/theme';
 
 import VideoPlayer from 'react-native-video-player';
-import Orientation from "react-native-orientation";
+import {Icon} from "react-native-elements";
 
 
 export default class Youtube extends Component {
   static navigationOptions = {
-    headerShown: false,
     title: 'Live Class',
     headerStyle: {
       backgroundColor: BLUESLIGHT,
@@ -55,13 +54,26 @@ export default class Youtube extends Component {
 
         <View
             style={{
-              width: HEIGHT,
-              height:WIDTH,
+              width: WIDTH,
+              height:HEIGHT,
               justifyContent: 'center',
               alignItems: 'center',
               backgroundColor:'#000000'
             }}>
+            <View style={{
+                position:'absolute',
+                top:50,
+                left:8
+            }}>
+                <Icon
+                    onPress={() => this.props.navigation.goBack()}
+                    name='leftcircleo'
+                    type='antdesign'
+                    size={44}
+                    color='#ffffff'
 
+                />
+            </View>
           <StatusBar
               hidden={false}
               translucent={true}
@@ -76,16 +88,16 @@ export default class Youtube extends Component {
               resizeMode={'contain'}
               customStyles={{
                 video:{
-                  width: HEIGHT,
-                  height:WIDTH,
+                  width: WIDTH,
+                  height:HEIGHT-200,
                   top: 0,
                   left: 0,
                   bottom: 0,
                   right: 0,
                 },
                 videoWrapper:{
-                  width: HEIGHT,
-                  height:WIDTH,
+                    width: WIDTH,
+                    height:HEIGHT-200,
                   justifyContent: 'center',
                   alignItems: 'center',
                   top: 0,

@@ -30,12 +30,8 @@ import LottieView from "lottie-react-native";
 import Modal from 'react-native-modal';
 import ButtonCustomWithiconColor from '../../Component/ButtonCustomWithiconColor';
 import ButtonOutline from "../../Component/ButtonOutline";
-import RNIap, {
-    purchaseErrorListener,
-    purchaseUpdatedListener,
-    type ProductPurchase,
-    type PurchaseError, InAppPurchase, SubscriptionPurchase
-} from 'react-native-iap';
+import Purchases from 'react-native-purchases';
+
 
 
 
@@ -44,9 +40,6 @@ import RNIap, {
 @observer
 export default class ConfirmPayment extends Component {
 
-
-    purchaseUpdateSubscription = null
-    purchaseErrorSubscription = null
 
     static navigationOptions = {
         title: 'Payment Confirm',
@@ -75,7 +68,8 @@ export default class ConfirmPayment extends Component {
             paymentbtn: true,
             offlinepayment: false,
             modelheight: 4,
-            products: null
+            products: null,
+            loadingapple:false
         };
     }
 
@@ -123,14 +117,6 @@ export default class ConfirmPayment extends Component {
     componentWillUnmount() {
         clearTimeout(this.timer);
 
-        if (this.purchaseUpdateSubscription) {
-            this.purchaseUpdateSubscription.remove();
-            this.purchaseUpdateSubscription = null;
-        }
-        if (this.purchaseErrorSubscription) {
-            this.purchaseErrorSubscription.remove();
-            this.purchaseErrorSubscription = null;
-        }
     }
     CreateOrderCash = async () => {
         this.setState({
@@ -155,80 +141,75 @@ export default class ConfirmPayment extends Component {
     }
 
     googlepay = async () => {
-        const itemSkus = Platform.select({
-            ios: [
-                '1000'
-            ],
-            android: [
-                'com.globalbazaar.premium001'
-            ]
-        });
+        this.setState({
+            loadingapple:true
+        })
 
         try {
-            const products: Product[] = await RNIap.getProducts(itemSkus);
+            const offerings = await Purchases.getOfferings();
+            console.log(offerings)
+            if (offerings.current !== null && offerings.current.availablePackages.length !== 0) {
 
+            }
+        } catch (e) {
+
+        }
+
+
+
+// Note: if you are using purchaseProduct to purchase Android In-app products, an optional third parameter needs to be provided when calling purchaseProduct. You can use the package system to avoid this
+
+        try {
+         let kkk =  await Purchases.purchaseProduct("1000", null, Purchases.PURCHASE_TYPE.INAPP);
+
+         console.log(kkk)
 
             this.setState({
-                products: products[0]
+                loadingapple:false
             })
-            console.log(products)
-        } catch(err) {
-            console.warn(err); // standardized err.code and err.message available
+
+            Alert.alert(
+                "Your Purchase Successful",
+                "Thanks for making payment. You can start taking class now",
+                [
+                    { text: "Proceed to Class", onPress: () => this.props.User.route = 3 }
+                ],
+                { cancelable: false }
+            );
+
+        } catch (e) {
+            console.log(e);
+
+            this.setState({
+                loadingapple:false
+            })
+
+            Alert.alert(
+                "Error Occurred",
+                "Your Purchase is unsuccessful",
+                [
+                    { text: "Try Again", onPress: () => console.log("OK Pressed") }
+                ],
+                { cancelable: false }
+            );
         }
 
-        try {
-              await RNIap.requestPurchase('1000', false);
-        } catch (err) {
-            console.warn(err.code, err.message);
-        }
+
+
+
+
     }
 
 
 
 
 
-    componentDidMount(): void {
+   async componentDidMount(): void {
         this.animation.play();
 
-        this.purchaseUpdateSubscription = purchaseUpdatedListener((purchase: InAppPurchase | SubscriptionPurchase | ProductPurchase ) => {
-            console.log('purchaseUpdatedListener', purchase);
-            const receipt = purchase.transactionReceipt;
-            console.log(purchase);
-            if (receipt) {
-                console.log(receipt)
-                 RNIap.finishTransactionIOS(purchase.transactionId);
-                /*'yourAPI'.deliverOrDownloadFancyInAppPurchase(purchase.transactionReceipt)
-                    .then( async (deliveryResult) => {
-                        if (isSuccess(deliveryResult)) {
-                            // Tell the store that you have delivered what has been paid for.
-                            // Failure to do this will result in the purchase being refunded on Android and
-                            // the purchase event will reappear on every relaunch of the app until you succeed
-                            // in doing the below. It will also be impossible for the user to purchase consumables
-                            // again until you do this.
-                            if (Platform.OS === 'ios') {
-                                await RNIap.finishTransactionIOS(purchase.transactionId);
-                            } else if (Platform.OS === 'android') {
-                                // If consumable (can be purchased again)
-                                await RNIap.consumePurchaseAndroid(purchase.purchaseToken);
-                                // If not consumable
-                                await RNIap.acknowledgePurchaseAndroid(purchase.purchaseToken);
-                            }
+       await Purchases.setDebugLogsEnabled(true);
+       Purchases.setup("dMbseQznjrCwDtRuogOfBYYOFQYjLIVS");
 
-                            // From react-native-iap@4.1.0 you can simplify above `method`. Try to wrap the statement with `try` and `catch` to also grab the `error` message.
-                            // If consumable (can be purchased again)
-                            await RNIap.finishTransaction(purchase, true);
-                            // If not consumable
-                            await RNIap.finishTransaction(purchase, false);
-                        } else {
-                            // Retry / conclude the purchase is fraudulent, etc...
-                        }
-                    });*/
-            }
-        });
-
-        this.purchaseErrorSubscription = purchaseErrorListener((error: PurchaseError) => {
-            console.warn('purchaseErrorListener', error);
-        });
 
     }
 
@@ -368,9 +349,10 @@ export default class ConfirmPayment extends Component {
                                                           color2={'#69b1ff'}
                                                           color3={'#87acff'}/>
 
-                               <ButtonCustomWithiconColor title={'Google Pay'}
+                               <ButtonCustomWithiconColor title={'Apple Pay'}
                                                           onPre={() => this.googlepay()}
                                                           iconname={'apple'}
+                                                          loading={this.state.loadingapple}
                                                           type={'material-community'}
                                                           color1={'#000000'}
                                                           color2={'#000000'}

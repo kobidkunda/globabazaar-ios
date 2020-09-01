@@ -9,6 +9,8 @@ import {BASE_URL} from '../../../Config/URL';
 import {inject, observer} from 'mobx-react';
 import CircleLoader from '../../../Component/Loader/CircleLoader';
 import ClassLoader from '../../../Component/Loader/ClassLoader';
+import {TEXTNLBLACK} from "../../../Style/TextStyle";
+import EmptyClass from "./EmptyClass";
 @inject('Auth','User','Class')
 @observer
 export default class FreeClassListCompt extends Component {
@@ -17,6 +19,7 @@ export default class FreeClassListCompt extends Component {
 
     this.state = {
         loading: true,
+        empty:false,
       class : [
 
       ]
@@ -31,10 +34,17 @@ async  componentDidMount(): void {
     console.log(Teacherlist)
 
 
-    this.setState({
-      class: Teacherlist,
-        loading:false
-    })
+    if (Teacherlist.length > 0 ){
+        this.setState({
+            class: Teacherlist,
+            loading:false
+        })
+    } else {
+        this.setState({
+            empty:true,
+            loading:false
+        })
+    }
 
   }
 
@@ -115,6 +125,30 @@ async  componentDidMount(): void {
                           justifyContent: 'flex-start',
                           alignItems: 'center',
                       }}>
+
+                      <View style={{
+                          flex: 1,
+                          //marginTop: HEIGHT - 250,
+                          justifyContent: 'center',
+                          alignItems: 'center',
+                      }}>
+                          {this.state.empty ? (
+                              <View style={{
+                                  flex: 1,
+                                  //marginTop: HEIGHT - 250,
+                                  justifyContent: 'center',
+                                  alignItems: 'center',
+                              }}>
+
+                                  <EmptyClass/>
+                                  <TEXTNLBLACK>No Active Class</TEXTNLBLACK>
+
+                              </View>
+                          ) : null}
+
+                      </View>
+
+
                       { this.renderButtons(this.state.class)}
                   </Grid>
               )}

@@ -27,6 +27,8 @@ import ButtonCustomDisabled from "../../Component/ButtonCustomDisabled";
 import ButtonCustomWithiconColorShine from "../../Component/ButtonCustomWithiconColorShine";
 import Shimmer from "react-native-shimmer";
 import MaskedView from "@react-native-community/masked-view";
+import { Icon } from 'react-native-elements'
+
 @inject('Auth','User','Class')
 @observer
 export default class UpcomingClassDetails extends Component {
@@ -166,6 +168,21 @@ export default class UpcomingClassDetails extends Component {
                 alignItems: 'flex-start',
 
               }}>
+
+                <View style={{
+                    position:'absolute',
+                    top:50,
+                    left:8
+                }}>
+                    <Icon
+                        onPress={() => this.props.navigation.goBack()}
+                        name='leftcircleo'
+                        type='antdesign'
+                        size={44}
+                        color='#ffffff'
+
+                    />
+                </View>
               <View
                 style={{
                   flex: 2,

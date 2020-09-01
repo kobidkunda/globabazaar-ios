@@ -14,6 +14,22 @@ import {TEXTNLBLACKD} from '../../Style/TextStyle';
 @inject('Auth','User')
 @observer
 export default class Profile extends Component {
+
+
+  static navigationOptions = ({navigation}) => ({
+    title: 'Profile',
+    headerStyle: {
+      backgroundColor: BLUESLIGHT,
+    },
+    headerTintColor: '#ffffff',
+    headerTitleStyle: {
+      fontWeight: 'bold',
+      color: '#ffffff',
+    },
+  })
+
+
+
   constructor(props) {
     super(props);
 

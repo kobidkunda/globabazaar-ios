@@ -169,7 +169,7 @@ export default class Dashboard extends Component {
                       height:60,
                       backgroundColor:BLUEDARK,
                       position:'absolute',
-                      bottom:40,
+                      bottom:90,
                       right:10,
                       borderRadius:100,
                       justifyContent: 'center',

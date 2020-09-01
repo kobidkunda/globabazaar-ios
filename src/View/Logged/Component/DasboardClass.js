@@ -10,6 +10,7 @@ import {inject, observer} from 'mobx-react';
 import CircleLoader from '../../../Component/Loader/CircleLoader';
 import ClassLoader from '../../../Component/Loader/ClassLoader';
 import { ListItem, Avatar } from 'react-native-elements'
+import EmptyClass from "./EmptyClass";
 
 @inject('Auth','User','Class')
 @observer
@@ -20,7 +21,8 @@ export default class DasboardClass extends Component {
     this.state = {
         loading: true,
       class : [],
-        activeclass: null
+        activeclass: null,
+        empty:false
     };
   }
 
@@ -31,20 +33,28 @@ async  componentDidMount(): void {
 
     console.log(LiveClass);
 
+
     let vdos = LiveClass;
 
-    let items = vdos.slice(0, 2).map(i => {
-        return i
-    });
-    console.log(items);
+    if (LiveClass === 'false'){
+        this.setState({
+            class: Teacherlist,
+            activeclass: [],
+            loading:false,
+            empty:true
+        })
+    } else {
 
-
-
-    this.setState({
-      class: Teacherlist,
-        activeclass: items,
-        loading:false
-    })
+        let items = vdos.slice(0, 2).map(i => {
+            return i
+        });
+        console.log(items);
+        this.setState({
+            class: Teacherlist,
+            activeclass: items,
+            loading:false
+        })
+    }
 
   }
 
@@ -140,7 +150,7 @@ async  componentDidMount(): void {
                           marginBottom:100
                       }}>
 
-
+                      {this.state.empty ? (<EmptyClass/> ) : null}
 
                       {this.renderButtons(this.state.class)}
 

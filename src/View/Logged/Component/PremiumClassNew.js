@@ -12,6 +12,8 @@ import ClassLoader from '../../../Component/Loader/ClassLoader';
 import { ListItem } from 'react-native-elements'
 import {WIDTH} from "../../../Config/theme";
 import { FlatGrid } from 'react-native-super-grid';
+import EmptyClass from "./EmptyClass";
+import {TEXTNLBLACK} from "../../../Style/TextStyle";
 
 
 @inject('Auth','User','Class')
@@ -23,6 +25,8 @@ export default class PremiumClassNew extends Component {
     this.state = {
         loading: true,
       class : [],
+        empty:false,
+
         activeclassprem: [
         ]
     };
@@ -33,10 +37,19 @@ async  componentDidMount(): void {
     console.log('premium class')
     let LiveClass = await this.props.User.getLiveClass(_Token);
     console.log(LiveClass);
+
+    if (LiveClass !==  'false' ){
+        this.setState({
+    activeclassprem: LiveClass,
+        loading:false
+})
+} else {
     this.setState({
-        activeclassprem: LiveClass,
+        // activeclassprem: [],
+        empty:true,
         loading:false
     })
+}
 
   }
 
@@ -86,6 +99,24 @@ async  componentDidMount(): void {
                       <FlatGrid
                           itemDimension={WIDTH}
                           data={list}
+                          ListHeaderComponent={
+                              <View>
+                                  {this.state.empty ? (
+                                      <View style={{
+                                          flex: 1,
+                                          //marginTop: HEIGHT - 250,
+                                          justifyContent: 'center',
+                                          alignItems: 'center',
+                                      }}>
+
+                                          <EmptyClass/>
+                                          <TEXTNLBLACK>No Active Class</TEXTNLBLACK>
+
+                                      </View>
+                                  ) : null}
+
+                              </View>
+                          }
                           renderItem={({ item }) => (
 
                               <DashboardSchedule

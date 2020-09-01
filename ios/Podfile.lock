@@ -102,6 +102,9 @@ PODS:
   - OpenSSL-Universal (1.0.2.19):
     - OpenSSL-Universal/Static (= 1.0.2.19)
   - OpenSSL-Universal/Static (1.0.2.19)
+  - Purchases (3.4.0)
+  - PurchasesHybridCommon (1.2.0):
+    - Purchases (= 3.4.0)
   - RCTRequired (0.63.2)
   - RCTTypeSafety (0.63.2):
     - FBLazyVector (= 0.63.2)
@@ -354,8 +357,6 @@ PODS:
     - React
   - RNGestureHandler (1.7.0):
     - React
-  - RNIap (4.5.3):
-    - React
   - RNImageCropPicker (0.33.2):
     - React-Core
     - React-RCTImage
@@ -366,6 +367,9 @@ PODS:
     - React-RCTImage
     - TOCropViewController
   - RNLocalize (1.4.1):
+    - React
+  - RNPurchases (3.3.1):
+    - PurchasesHybridCommon (= 1.2.0)
     - React
   - RNReanimated (1.13.0):
     - React
@@ -448,9 +452,9 @@ DEPENDENCIES:
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
   - "RNCPicker (from `../node_modules/@react-native-community/picker`)"
   - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
-  - RNIap (from `../node_modules/react-native-iap`)
   - RNImageCropPicker (from `../node_modules/react-native-image-crop-picker`)
   - RNLocalize (from `../node_modules/react-native-localize`)
+  - RNPurchases (from `../node_modules/react-native-purchases`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - RNSVG (from `../node_modules/react-native-svg`)
@@ -476,6 +480,8 @@ SPEC REPOS:
     - JWT
     - lottie-ios
     - OpenSSL-Universal
+    - Purchases
+    - PurchasesHybridCommon
     - Shimmer
     - SSZipArchive
     - TOCropViewController
@@ -566,12 +572,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/@react-native-community/picker"
   RNGestureHandler:
     :path: "../node_modules/react-native-gesture-handler"
-  RNIap:
-    :path: "../node_modules/react-native-iap"
   RNImageCropPicker:
     :path: "../node_modules/react-native-image-crop-picker"
   RNLocalize:
     :path: "../node_modules/react-native-localize"
+  RNPurchases:
+    :path: "../node_modules/react-native-purchases"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -613,6 +619,8 @@ SPEC CHECKSUMS:
   lottie-ios: 48fac6be217c76937e36e340e2d09cf7b10b7f5f
   lottie-react-native: 1fb4ce21d6ad37dab8343eaff8719df76035bd93
   OpenSSL-Universal: 8b48cc0d10c1b2923617dfe5c178aa9ed2689355
+  Purchases: b8cac232e403ca51541a425a65992b902cecc044
+  PurchasesHybridCommon: deba31751165f0a0f84eba3df68a54641f8a69b1
   RCTRequired: f13f25e7b12f925f1f6a6a8c69d929a03c0129fe
   RCTTypeSafety: 44982c5c8e43ff4141eb519a8ddc88059acd1f3a
   React: e1c65dd41cb9db13b99f24608e47dd595f28ca9a
@@ -644,9 +652,9 @@ SPEC CHECKSUMS:
   RNCMaskedView: 5a8ec07677aa885546a0d98da336457e2bea557f
   RNCPicker: 494015f2b7ec4bee5484b6f235aa19691426dcdb
   RNGestureHandler: b6b359bb800ae399a9c8b27032bdbf7c18f08a08
-  RNIap: 73ef1b1dc8b52fc411186585e81a8152ce0b4ecd
   RNImageCropPicker: 82f4caef16a37c07cbb0171be95aa5584f99bd9d
   RNLocalize: 49634a6a605dcdeb319e9c42a5c2f1aec508694b
+  RNPurchases: bab40549792361f408b1dafbe31a5ebaf0c03c38
   RNReanimated: 89f5e0a04d1dd52fbf27e7e7030d8f80a646a3fc
   RNScreens: b748efec66e095134c7166ca333b628cd7e6f3e2
   RNSVG: ce9d996113475209013317e48b05c21ee988d42e

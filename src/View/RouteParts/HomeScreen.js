@@ -81,7 +81,7 @@ export default class HomeScreen extends Component {
               name="UpcomingClassDetails"
               component={UpcomingClassDetails}
           />
-        <HomeScreenStack.Screen name="Profile" component={Profile} />
+        <HomeScreenStack.Screen options={Profile.navigationOptions} name="Profile" component={Profile} />
       </HomeScreenStack.Navigator>
     );
   }

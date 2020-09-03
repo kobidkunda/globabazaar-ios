@@ -23,7 +23,7 @@ export default class Auth {
   @observable update_modal = false;
   @observable local = 'en-in';
   @observable langfile = ENGLISH;
-  @observable langpopup = false;
+  @observable langpopup = true;
   @observable otpretry = 3;
 
   @action ChangeLang = async lang => {

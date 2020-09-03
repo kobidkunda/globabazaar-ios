@@ -398,11 +398,11 @@ export default class Register extends Component {
                       InputRef={input => {
                         this.inputs.city = input;
                       }}
-                      value={values.city}
+                      value={values.state}
                       blurOnSubmit={false}
                       returnKeyType={'next'}
                       leftIcon={'home-map-marker'}
-                      placeholder={this.props.Auth.langfile.words.cou}
+                      placeholder={this.props.Auth.langfile.words.st}
                       onChangeText={handleChange('city')}
                       onBlur={() => setFieldTouched('city')}
                       autoCorrect={false}

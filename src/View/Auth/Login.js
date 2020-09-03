@@ -8,7 +8,7 @@ import {
     Image,
     TouchableWithoutFeedback,
     TouchableOpacity,
-    KeyboardAvoidingView, StatusBar, ActivityIndicator,
+    KeyboardAvoidingView, StatusBar, ActivityIndicator, Keyboard,
 } from 'react-native';
 import {Col, Row, Grid} from 'react-native-easy-grid';
 import * as yup from 'yup';
@@ -128,11 +128,12 @@ export default class Login extends Component {
                 style={{
                 position:'absolute',
                 padding:5,
-                marginTop:30,
+                marginTop:50,
                 right:10,
                 borderColor:WHITE,
                 borderWidth:1,
-                borderRadius:7
+                borderRadius:7,
+                    elevation:24
             }}>
                 <Icon name={'language'} type={'entypo'} color={WHITE}/>
                 <TEXTLLGWHITE> Language</TEXTLLGWHITE>
@@ -239,6 +240,7 @@ export default class Login extends Component {
                       onBlur={() => setFieldTouched('password')}
                       placeholder={this.props.Auth.langfile.words.pw}
                       leftIcon={'onepassword'}
+                      InputonSubmitEditing={Keyboard.dismiss}
                       returnKeyType={'go'}
                       autoCorrect={false}
                       value={values.password}

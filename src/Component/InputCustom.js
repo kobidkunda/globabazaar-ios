@@ -15,7 +15,6 @@ const InputCustom = props => (
       containerStyle={styles.containerStyle}
       inputContainerStyle={styles.labelStyle}
       placeholder={props.placeholder}
-      editable={props.editable}
       returnKeyType={props.returnKeyType}
       onSubmitEditing={props.InputonSubmitEditing}
       autoCapitalize={props.autoCapitalize}
